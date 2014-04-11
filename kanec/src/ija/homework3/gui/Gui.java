@@ -14,14 +14,14 @@ import ija.homework3.figures.*;
  */
 public class Gui extends JFrame implements MouseListener, MouseMotionListener{
 	
-	private JFrame frame = new JFrame("Über broken checkers"); //create Frame
+	private JFrame frame = new JFrame("Chess project for OOP classes"); //create Frame
 	private JPanel pButtons = new JPanel();
 	private JPanel pDesk = new JPanel();
 
 	private JButton bSingle = new JButton("Single player");
-	private JButton bLocal = new JButton("Local multiplayer");
-	private JButton bOnlineServer = new JButton("Host a game");
-	private JButton bOnlineClient = new JButton("Connect to host");
+	private JButton bLocal = new JButton("Multi player");
+	//private JButton bOnlineServer = new JButton("Host a game");
+	//private JButton bOnlineClient = new JButton("Connect to host");
 	private JButton bExit = new JButton("Exit");
 
 	Dimension boardSize = new Dimension(300, 300);
@@ -55,8 +55,8 @@ public class Gui extends JFrame implements MouseListener, MouseMotionListener{
 		// Add Buttons
 		pButtons.add(bSingle);
 		pButtons.add(bLocal);
-		pButtons.add(bOnlineClient);
-		pButtons.add(bOnlineServer);
+		//pButtons.add(bOnlineClient);
+		//pButtons.add(bOnlineServer);
 		pButtons.add(bExit);
 		pButtons.setLayout(new BoxLayout(pButtons, BoxLayout.Y_AXIS));
 		pane.add(pButtons, BorderLayout.NORTH);
@@ -64,8 +64,8 @@ public class Gui extends JFrame implements MouseListener, MouseMotionListener{
 		// listeners
 		bSingle.addActionListener(new SingleButtonHandler());
 		bLocal.addActionListener(new LocalButtonHandler());
-		bOnlineClient.addActionListener(new OnlineClientButtonHandler());
-		bOnlineServer.addActionListener(new OnlineServerButtonHandler());
+		//bOnlineClient.addActionListener(new OnlineClientButtonHandler());
+		//bOnlineServer.addActionListener(new OnlineServerButtonHandler());
 		bExit.addActionListener(new ExitButtonHandler());
 	}
 	
