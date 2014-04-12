@@ -8,9 +8,11 @@ package brutalchess.basis;
  *
  * @author Barush
  */
-public class Figure {
+public abstract class Figure {
     private Position pos;
-    private int col;
+    private int col; // color
+	
+	public abstract boolean canMove(Position p);
     
     public Figure(Position pos, int col){
         this.pos = pos;
