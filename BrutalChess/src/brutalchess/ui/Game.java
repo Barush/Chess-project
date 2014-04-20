@@ -6,6 +6,10 @@
 
 package brutalchess.ui;
 
+import static brutalchess.Const.*;
+import brutalchess.basis.Position;
+import java.awt.GridLayout;
+
 /**
  *
  * @author Canes
@@ -14,9 +18,18 @@ public class Game extends javax.swing.JPanel {
 
 	/**
 	 * Creates new form Game
+	 * @param desk
+	 * @param dim
 	 */
-	public Game() {
+	public Game(Position[][] desk, int dim) {
 		initComponents();
+		
+		this.Desk.setLayout( new GridLayout(dim, dim) );
+		for (Position[] row: desk) {
+			for (Position pos: row) {
+				this.Desk.add(pos.getTile());
+			}
+		}
 	}
 
 	/**

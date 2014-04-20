@@ -20,7 +20,7 @@ public class Position {
         this.desk = d;
         this.col = c;
         this.row = r;
-		this.tile = new Tile(color);
+		this.tile = new Tile(color, this);
     }
     
     public void setRow(int r){
@@ -45,5 +45,9 @@ public class Position {
     
     public Figure getFigure(){
         return this.fig;
+    }
+    
+    public Tile getTile(){
+        return this.tile;
     }
 }

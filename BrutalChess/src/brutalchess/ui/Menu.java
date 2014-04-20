@@ -4,6 +4,8 @@
  */
 package brutalchess.ui;
 
+import brutalchess.BrutalChess;
+
 /**
  *
  * @author Barush
@@ -110,7 +112,7 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_butMultiActionPerformed
 
     private void butSingleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butSingleActionPerformed
-        // TODO add your handling code here:
+        BrutalChess.initDesk();
     }//GEN-LAST:event_butSingleActionPerformed
 
     private void butExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butExitActionPerformed

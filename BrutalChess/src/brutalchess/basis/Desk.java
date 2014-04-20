@@ -15,9 +15,11 @@ public class Desk {
     public Desk(int dim) {
 		this.dim = dim;
         this.desk = new Position[dim][dim];
+		
         for (int i = 0; i < dim; i++) {
             for (int j = 0; j < dim; j++) {
-                this.desk[i][j] = new Position(this, (char) ('a' + j), i + 1, WHITE);
+				int color = ((i + j) % 2) == 0 ? WHITE : BLACK;
+                this.desk[i][j] = new Position(this, (char) ('a' + j), i + 1, color);
             }
         }
     }
