@@ -14,14 +14,14 @@ import java.awt.GridLayout;
  *
  * @author Canes
  */
-public class Game extends javax.swing.JPanel {
+public class GamePanel extends javax.swing.JPanel {
 
 	/**
 	 * Creates new form Game
 	 * @param desk
 	 * @param dim
 	 */
-	public Game(Position[][] desk, int dim) {
+	public GamePanel(Position[][] desk, int dim) {
 		initComponents();
 		
 		this.Desk.setLayout( new GridLayout(dim, dim) );
@@ -30,6 +30,8 @@ public class Game extends javax.swing.JPanel {
 				this.Desk.add(pos.getTile());
 			}
 		}
+		
+		setVisible(true);
 	}
 
 	/**

@@ -5,10 +5,12 @@
 package brutalchess;
 
 import static brutalchess.Const.*;
-import brutalchess.ui.Menu;
-import brutalchess.ui.Game;
+import brutalchess.ui.Frame;
+import brutalchess.ui.MenuPanel;
+import brutalchess.ui.GamePanel;
 import brutalchess.basis.Desk;
 import brutalchess.basis.Position;
+import javax.swing.JFrame;
 
 /**
  *
@@ -16,20 +18,21 @@ import brutalchess.basis.Position;
  */
 public class BrutalChess {
 
+	static private Frame frame;
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Menu menu = new Menu();
-        menu.setTitle("Chess project (Baruska a Ondrasek)");
+        frame = new Frame();
+        frame.setTitle("Chess project (Baruska a Ondrasek)");
+		MenuPanel menu = new MenuPanel();
+		frame.setContent( menu );
     }
 	
 	// we should probably move this thing to some place else
 	static public void initDesk(){
 		Desk desk = new Desk(8);
-		Game game = new Game(desk.getPositions(), 8);
-//		game.setVisible(true); //???? shiiit :(
-		
+		frame.setContent( new GamePanel(desk.getPositions(), 8) );
 	}
 }

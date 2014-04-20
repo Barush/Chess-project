@@ -13,7 +13,7 @@ public class Position {
     private int row;
     private char col;
     private Figure fig;
-	private Tile tile;
+	private final Tile tile;
     private final Desk desk;
     
     public Position(Desk d, char c, int r, int color){
