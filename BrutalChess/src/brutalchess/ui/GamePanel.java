@@ -9,6 +9,7 @@ package brutalchess.ui;
 import static brutalchess.Const.*;
 import brutalchess.basis.Position;
 import java.awt.GridLayout;
+import javax.swing.JLabel;
 
 /**
  *
@@ -24,8 +25,19 @@ public class GamePanel extends javax.swing.JPanel {
 	public GamePanel(Position[][] desk, int dim) {
 		initComponents();
 		
-		this.Desk.setLayout( new GridLayout(dim, dim) );
+		this.Desk.setLayout( new GridLayout(dim + 1, dim + 1) );
+		
+		// add empty label and numbers 1 to dim
+		this.Desk.add( new JLabel() );
+		for (int i = 1; i <= dim; i++){
+			this.Desk.add( new JLabel( String.valueOf(i) ) );
+		}
+		
+		char j = 'a';
 		for (Position[] row: desk) {
+			// add letter to every row
+			this.Desk.add( new JLabel( String.valueOf(j++) ) );
+			
 			for (Position pos: row) {
 				this.Desk.add(pos.getTile());
 			}
@@ -51,11 +63,11 @@ public class GamePanel extends javax.swing.JPanel {
         Desk.setLayout(DeskLayout);
         DeskLayout.setHorizontalGroup(
             DeskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGap(0, 380, Short.MAX_VALUE)
         );
         DeskLayout.setVerticalGroup(
             DeskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 200, Short.MAX_VALUE)
+            .addGap(0, 278, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -64,15 +76,15 @@ public class GamePanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Desk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addComponent(Desk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(Desk, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addComponent(Desk, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         Desk.getAccessibleContext().setAccessibleName("");

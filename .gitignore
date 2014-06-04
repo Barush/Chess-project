@@ -1,5 +1,6 @@
 kanec
 draft
-BrutalChess/build/*
-BrutalChess/nbproject/*
-BrutalChess/dist/*
+BrutalChess/build.xml
+BrutalChess/build/
+BrutalChess/nbproject/
+BrutalChess/dist/
