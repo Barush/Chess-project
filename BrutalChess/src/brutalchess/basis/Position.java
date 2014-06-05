@@ -5,6 +5,7 @@
 package brutalchess.basis;
 
 import brutalchess.ui.Tile;
+import java.io.IOException;
 /**
  *
  * @author Barush
@@ -39,8 +40,9 @@ public class Position {
         return this.col;
     }
     
-    public void setFigure(Figure fig){
+    public void setFigure(Figure fig) {
         this.fig = fig;
+		this.fig.paintFigure();
     }
     
     public Figure getFigure(){

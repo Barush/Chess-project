@@ -1,6 +1,8 @@
 package brutalchess.basis;
 
 import static brutalchess.Const.*;
+import brutalchess.basis.figures.*;
+import java.io.IOException;
 
 public class Desk {
 
@@ -22,6 +24,8 @@ public class Desk {
                 this.desk[i][j] = new Position(this, (char) ('a' + j), i + 1, color);
             }
         }
+		
+		this.initFigures();
     }
 
     /**
@@ -56,4 +60,34 @@ public class Desk {
 	public Position[][] getPositions() {
         return this.desk;
     }
+	
+	final public void initFigures() {
+		
+		Position tempP;
+		Figure tempF;
+		
+		// Bishops: B {C8 F8} W {C1 F1}
+		tempP = getPositionAt('c', 8);
+		tempF = new Bishop(tempP, BLACK );
+		tempP.setFigure(tempF);
+		tempP = getPositionAt('f', 8);
+		tempF = new Bishop(tempP, BLACK );
+		tempP.setFigure(tempF);
+		tempP = getPositionAt('c', 1);
+		tempF = new Bishop(tempP, WHITE );
+		tempP.setFigure(tempF);
+		tempP = getPositionAt('f', 1);
+		tempF = new Bishop(tempP, WHITE );
+		tempP.setFigure(tempF);
+		
+		// Bishops: B {C8 F8} W {C1 F1}
+		
+		
+//		for (int i = 0; i < dim; i++) {
+//            for (int j = 0; j < dim; j++) {
+//				int color = ((i + j) % 2) == 0 ? WHITE : BLACK;
+//                this.desk[i][j] = new Position(this, (char) ('a' + j), i + 1, color);
+//            }
+//        }
+	}
 }

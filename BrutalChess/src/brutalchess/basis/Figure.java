@@ -4,19 +4,32 @@
  */
 package brutalchess.basis;
 
+import brutalchess.ui.Tile;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+
 /**
  *
  * @author Barush
  */
 public abstract class Figure {
-    private Position pos;
-    private int col; // color
+    protected Position pos;
+    protected int col; // color
 	
 	public abstract boolean canMove(Position p);
+	public abstract String getPathToPic();
     
     public Figure(Position pos, int col){
         this.pos = pos;
         this.col = col;
+//		pos.setFigure(this);
     }
     
     public void setPosition(Position pos){
@@ -37,4 +50,21 @@ public abstract class Figure {
     public int getColor(){
         return this.col;
     }
+	
+	public void paintFigure() {
+		Tile tile = this.pos.getTile();
+//		BufferedImage image;
+//		try {
+//			image = ImageIO.read(getClass().getResource( this.getPathToPic() ));
+//		} catch (IOException ex) {
+//			Logger.getLogger(Figure.class.getName()).log(Level.SEVERE, null, ex);
+//			return;
+//		}
+//		Image dimg = image.getScaledInstance(tile.getWidth(), tile.getHeight(), Image.SCALE_SMOOTH);
+//		ImageIcon imgIcon = new ImageIcon( dimg );
+//		JLabel picLabel = new JLabel( imgIcon );
+		JLabel picLabel = new JLabel( "B" );
+		tile.add(picLabel);
+	}
+
 }
