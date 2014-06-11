@@ -28,5 +28,14 @@ public class Bishop extends Figure{
         }
         return false;
     }
+
+	@Override
+	public String getPathToPic() {
+		if (this.col == BLACK){
+			return "/images/bishop_black.png";
+		} else {
+			return "/images/bishop_white.png";
+		}
+	}
 }
 

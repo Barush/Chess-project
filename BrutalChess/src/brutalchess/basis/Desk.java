@@ -1,7 +1,7 @@
 package brutalchess.basis;
 
 import static brutalchess.Const.*;
-import brutalchess.basis.figures.*;
+import brutalchess.figures.*;
 import java.io.IOException;
 
 public class Desk {
