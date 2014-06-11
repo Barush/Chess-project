@@ -50,4 +50,17 @@ public class Position {
     public Tile getTile(){
         return this.tile;
     }
+    
+    public Position nextPosition(Desk desk, int dC, int dR){
+        char nextCol;
+        int nextRow;
+        int color = 0;
+        
+        nextCol = (char)(this.col + dC);
+        nextRow = this.row + dR;
+        
+        Position nextPos = new Position(desk, nextCol, nextRow, color);
+        
+        return nextPos;
+    }
 }
