@@ -58,7 +58,7 @@ public class GamePanel extends javax.swing.JPanel {
 
         Desk = new javax.swing.JPanel();
 
-        Desk.setBackground(new java.awt.Color(255, 255, 255));
+        Desk.setBackground(new java.awt.Color(227, 224, 224));
         Desk.setBorder(null);
 
         javax.swing.GroupLayout DeskLayout = new javax.swing.GroupLayout(Desk);
