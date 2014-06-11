@@ -53,17 +53,16 @@ public abstract class Figure {
 	
 	public void paintFigure() {
 		Tile tile = this.pos.getTile();
-//		BufferedImage image;
-//		try {
-//			image = ImageIO.read(getClass().getResource( this.getPathToPic() ));
-//		} catch (IOException ex) {
-//			Logger.getLogger(Figure.class.getName()).log(Level.SEVERE, null, ex);
-//			return;
-//		}
-//		Image dimg = image.getScaledInstance(tile.getWidth(), tile.getHeight(), Image.SCALE_SMOOTH);
-//		ImageIcon imgIcon = new ImageIcon( dimg );
-//		JLabel picLabel = new JLabel( imgIcon );
-		JLabel picLabel = new JLabel( "B" );
+		BufferedImage image;
+		try {
+			image = ImageIO.read(getClass().getResource( this.getPathToPic() ));
+		} catch (IOException ex) {
+			Logger.getLogger(Figure.class.getName()).log(Level.SEVERE, null, ex);
+			return;
+		}
+		Image dimg = image.getScaledInstance(12, 12, Image.SCALE_SMOOTH);
+		ImageIcon imgIcon = new ImageIcon( dimg );
+		JLabel picLabel = new JLabel( imgIcon );
 		tile.add(picLabel);
 	}
 
