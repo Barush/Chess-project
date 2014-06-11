@@ -30,6 +30,10 @@ public class Rook extends Figure{
 
 	@Override
 	public String getPathToPic() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            if (this.col == BLACK){
+                return "/images/rook_black_unp.png";
+            } else {
+                return "/images/rook_white_unp.png";
+            }
 	}
 }

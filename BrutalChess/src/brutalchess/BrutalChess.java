@@ -25,6 +25,8 @@ public class BrutalChess {
     public static void main(String[] args) {
         // TODO code application logic here
         frame = new Frame();
+        frame.setSize(800, 800);
+        frame.setResizable(false);
         frame.setTitle("Chess project (Baruska a Ondrasek)");
 		MenuPanel menu = new MenuPanel();
 		frame.setContent( menu );

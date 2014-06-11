@@ -31,7 +31,11 @@ public class King extends Figure{
 
 	@Override
 	public String getPathToPic() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            if (this.col == BLACK){
+                return "/images/king_black_unp.png";
+            } else {
+                return "/images/king_white_unp.png";
+            }
 	}
 }
 

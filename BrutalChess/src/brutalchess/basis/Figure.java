@@ -60,7 +60,7 @@ public abstract class Figure {
 			Logger.getLogger(Figure.class.getName()).log(Level.SEVERE, null, ex);
 			return;
 		}
-		Image dimg = image.getScaledInstance(12, 12, Image.SCALE_SMOOTH);
+		Image dimg = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
 		ImageIcon imgIcon = new ImageIcon( dimg );
 		JLabel picLabel = new JLabel( imgIcon );
 		tile.add(picLabel);

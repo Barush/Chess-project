@@ -20,8 +20,8 @@ public class Desk {
 		
         for (int i = 0; i < dim; i++) {
             for (int j = 0; j < dim; j++) {
-				int color = ((i + j) % 2) == 0 ? WHITE : BLACK;
-                this.desk[i][j] = new Position(this, (char) ('a' + j), i + 1, color);
+				int color = ((i + j) % 2) == 0 ? BLACK : WHITE;
+                this.desk[i][j] = new Position(this, (char) ('a' + j), i, color);
             }
         }
 		
@@ -60,28 +60,78 @@ public class Desk {
 	public Position[][] getPositions() {
         return this.desk;
     }
-	
-	final public void initFigures() {
-		
+	private void createFigure(Position pos, String type, int color){
+            Figure tempF = null;
+            
+            switch(type){
+                case "Bishop": tempF = new Bishop(pos, color);
+                            break;
+                case "King": tempF = new King(pos, color);
+                            break;
+                case "Knight": tempF = new Knight(pos, color);
+                            break;
+                case "Pawn": tempF = new Pawn(pos, color);
+                            break;
+                case "Queen": tempF = new Queen(pos, color);
+                            break;
+                case "Rook": tempF = new Rook(pos, color);
+                            break;
+            }
+                       
+            pos.setFigure(tempF);
+            tempF.setPosition(pos);
+            
+        }
+        
+	final public void initFigures() {		
 		Position tempP;
 		Figure tempF;
-		
+                
+                //Pawns: B {2ABCDEFGH} W {7ABCDEFGH}
+		createFigure(getPositionAt('a', 2), "Pawn", WHITE);
+		createFigure(getPositionAt('b', 2), "Pawn", WHITE);
+		createFigure(getPositionAt('c', 2), "Pawn", WHITE);
+		createFigure(getPositionAt('d', 2), "Pawn", WHITE);
+		createFigure(getPositionAt('e', 2), "Pawn", WHITE);
+		createFigure(getPositionAt('f', 2), "Pawn", WHITE);
+		createFigure(getPositionAt('g', 2), "Pawn", WHITE);
+		createFigure(getPositionAt('h', 2), "Pawn", WHITE);
+                
+		createFigure(getPositionAt('a', 7), "Pawn", BLACK);
+		createFigure(getPositionAt('b', 7), "Pawn", BLACK);
+		createFigure(getPositionAt('c', 7), "Pawn", BLACK);
+		createFigure(getPositionAt('d', 7), "Pawn", BLACK);
+		createFigure(getPositionAt('e', 7), "Pawn", BLACK);
+		createFigure(getPositionAt('f', 7), "Pawn", BLACK);
+		createFigure(getPositionAt('g', 7), "Pawn", BLACK);
+		createFigure(getPositionAt('h', 7), "Pawn", BLACK);
+                
 		// Bishops: B {C8 F8} W {C1 F1}
-		tempP = getPositionAt('c', 8);
-		tempF = new Bishop(tempP, BLACK );
-		tempP.setFigure(tempF);
-		tempP = getPositionAt('f', 8);
-		tempF = new Bishop(tempP, BLACK );
-		tempP.setFigure(tempF);
-		tempP = getPositionAt('c', 1);
-		tempF = new Bishop(tempP, WHITE );
-		tempP.setFigure(tempF);
-		tempP = getPositionAt('f', 1);
-		tempF = new Bishop(tempP, WHITE );
-		tempP.setFigure(tempF);
+		createFigure(getPositionAt('c', 8), "Bishop", BLACK);
+		createFigure(getPositionAt('f', 8), "Bishop", BLACK);
+                
+		createFigure(getPositionAt('c', 1), "Bishop", WHITE);
+		createFigure(getPositionAt('f', 1), "Bishop", WHITE);
 		
-		// Bishops: B {C8 F8} W {C1 F1}
-		
+                //Kings: W {E1}  B {E8}
+		createFigure(getPositionAt('e', 8), "King", BLACK);
+		createFigure(getPositionAt('e', 1), "King", WHITE);
+                
+                //Queens: W {D1} B {D8}
+		createFigure(getPositionAt('d', 1), "Queen", WHITE);
+		createFigure(getPositionAt('d', 8), "Queen", BLACK);
+                
+                //Knights: W {B1 G1} B {B8 G8}
+		createFigure(getPositionAt('b', 1), "Knight", WHITE);
+		createFigure(getPositionAt('g', 1), "Knight", WHITE);
+		createFigure(getPositionAt('b', 8), "Knight", BLACK);
+		createFigure(getPositionAt('g', 8), "Knight", BLACK);
+                
+               //Rooks: W {A1 H1} B {A8 B8}
+		createFigure(getPositionAt('a', 1), "Rook", WHITE);
+		createFigure(getPositionAt('h', 1), "Rook", WHITE);
+		createFigure(getPositionAt('a', 8), "Rook", BLACK);
+		createFigure(getPositionAt('h', 8), "Rook", BLACK);
 		
 //		for (int i = 0; i < dim; i++) {
 //            for (int j = 0; j < dim; j++) {

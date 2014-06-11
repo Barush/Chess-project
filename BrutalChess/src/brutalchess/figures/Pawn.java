@@ -24,23 +24,37 @@ public class Pawn extends Figure{
     public boolean canMove(Position p) {
         //normal moves (one or two forward)
         if(p.getCol() == this.getPosition().getCol()){
-            //white figures go from bottom to top
-            if((this.getColor() == WHITE) && (p.getRow() >= (this.getPosition().getRow() + 1)) && (p.getRow() <= (this.getPosition().getRow() + 2))){
-                return true;
-            }
-            //black figures go from top to bottom
-            else if((this.getColor() == BLACK) && (p.getRow() >= (p.getRow() - 1)) && (p.getRow() <= (p.getRow() - 2))){
-                return true;
+            //white figures go from top to bottom
+            if(this.getColor() == WHITE){
+                //normal moves
+                if(p.getRow() == (this.getPosition().getRow() - 1)){
+                    return true;
+                }
+                //starting moves - two positions
+                else if( (this.getPosition().getRow() == 2)  && (p.getRow() == (this.getPosition().getRow() - 2))){
+                    return true;
+                }
+            }  
+            //black figures go from bottom to top
+            else if(this.getColor() == BLACK){
+                //normal move
+                if(p.getRow() == (this.getPosition().getRow() + 1)){
+                    return true;
+                }
+                //starting moves - two positions
+                else if((this.getPosition().getRow() == 7)  && (p.getRow() == (this.getPosition().getRow() + 2))){
+                    return true;
+                }
             }
         }
         //throwing moves
-        else if((this.getColor() == WHITE) && (p.getRow() == (this.getPosition().getRow() + 1))){
+        else if((this.getColor() == WHITE) && (p.getRow() == (this.getPosition().getRow() - 1))){
             if((p.getCol() == (this.getPosition().getCol() + 1)) && (p.getCol() == (this.getPosition().getCol() - 1))){
                 //throw figure()
                 return true;
             }
         }
-        else if((this.getColor() == BLACK) && (p.getRow() == (this.getPosition().getRow() - 1))){
+        else if((this.getColor() == BLACK) && (p.getRow() == (this.getPosition().getRow() + 1))){
             if((p.getCol() == (this.getPosition().getCol() + 1)) && (p.getCol() == (this.getPosition().getCol() - 1))){
                 //throw figure()
                 return true;
@@ -51,6 +65,10 @@ public class Pawn extends Figure{
 
 	@Override
 	public String getPathToPic() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            if (this.col == BLACK){
+                return "/images/pawn_black_unp.png";
+            } else {
+                return "/images/pawn_white_unp.png";
+            }
 	}
 }

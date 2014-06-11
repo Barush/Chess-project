@@ -6,6 +6,7 @@
 
 package brutalchess.figures;
 
+import static brutalchess.Const.*;
 import brutalchess.basis.Figure;
 import brutalchess.basis.Position;
 import static java.lang.Math.abs;
@@ -31,6 +32,10 @@ public class Knight extends Figure{
 
 	@Override
 	public String getPathToPic() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            if (this.col == BLACK){
+		return "/images/knight_black_unp.png";
+            } else {
+		return "/images/knight_white_unp.png";
+            }
 	}
 }
