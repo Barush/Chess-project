@@ -29,14 +29,15 @@ public class GamePanel extends javax.swing.JPanel {
 		
 		// add empty label and numbers 1 to dim
 		this.Desk.add( new JLabel() );
+                char j = 'a';
 		for (int i = 1; i <= dim; i++){
-			this.Desk.add( new JLabel( String.valueOf(i) ) );
+			this.Desk.add( new JLabel( String.valueOf(j++), JLabel.CENTER ) );
 		}
 		
-		char j = 'a';
+		int k = 8;
 		for (Position[] row: desk) {
 			// add letter to every row
-			this.Desk.add( new JLabel( String.valueOf(j++) ) );
+			this.Desk.add( new JLabel( String.valueOf(k--), JLabel.CENTER ) );
 			
 			for (Position pos: row) {
 				this.Desk.add(pos.getTile());
@@ -58,6 +59,7 @@ public class GamePanel extends javax.swing.JPanel {
         Desk = new javax.swing.JPanel();
 
         Desk.setBackground(new java.awt.Color(255, 255, 255));
+        Desk.setBorder(null);
 
         javax.swing.GroupLayout DeskLayout = new javax.swing.GroupLayout(Desk);
         Desk.setLayout(DeskLayout);
