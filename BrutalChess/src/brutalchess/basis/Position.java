@@ -5,6 +5,8 @@
 package brutalchess.basis;
 
 import brutalchess.ui.Tile;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 /**
  *
@@ -40,9 +42,9 @@ public class Position {
         return this.col;
     }
     
-    public void setFigure(Figure fig) {
+    public void setFigure(Figure fig, String state) {
         this.fig = fig;
-		this.fig.paintFigure();
+		this.fig.paintFigure(state);
     }
     
     public Figure getFigure(){
@@ -51,5 +53,9 @@ public class Position {
     
     public Tile getTile(){
         return this.tile;
+    }
+    
+    public Desk getDesk(){
+        return this.desk;
     }
 }

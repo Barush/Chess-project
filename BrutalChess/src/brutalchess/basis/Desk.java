@@ -8,6 +8,7 @@ public class Desk {
 
     private final int dim;
     private final Position[][] desk;
+    private Position active;
 
     /**
      * Constructor of the desk class
@@ -15,7 +16,7 @@ public class Desk {
      * @param dim dimension of the desk - it is a square dim x dim tiles
      */
     public Desk(int dim) {
-		this.dim = dim;
+        this.dim = dim;
         this.desk = new Position[dim][dim];
 		
         for (int i = 0; i < dim; i++) {
@@ -24,6 +25,7 @@ public class Desk {
                 this.desk[i][j] = new Position(this, (char) ('a' + j), i, color);
             }
         }
+        this.active = null;
 		
 		this.initFigures();
     }
@@ -60,6 +62,15 @@ public class Desk {
 	public Position[][] getPositions() {
         return this.desk;
     }
+        
+    public Position getActive(){
+        return this.active;
+    }
+    
+    public void setActive(Position pos){
+        this.active = pos;
+    }
+    
 	private void createFigure(Position pos, String type, int color){
             Figure tempF = null;
             
@@ -78,7 +89,7 @@ public class Desk {
                             break;
             }
                        
-            pos.setFigure(tempF);
+            pos.setFigure(tempF, ".");
             tempF.setPosition(pos);
             
         }

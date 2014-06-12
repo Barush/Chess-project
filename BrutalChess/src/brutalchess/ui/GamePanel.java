@@ -9,13 +9,16 @@ package brutalchess.ui;
 import static brutalchess.Const.*;
 import brutalchess.basis.Position;
 import java.awt.GridLayout;
-import javax.swing.JLabel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.*;
 
 /**
  *
  * @author Canes
  */
-public class GamePanel extends javax.swing.JPanel {
+public class GamePanel extends javax.swing.JPanel{
 
 	/**
 	 * Creates new form Game
@@ -25,7 +28,7 @@ public class GamePanel extends javax.swing.JPanel {
 	public GamePanel(Position[][] desk, int dim) {
 		initComponents();
 		
-		this.Desk.setLayout( new GridLayout(dim + 2, dim + 2) );
+		this.Desk.setLayout( new GridLayout(dim + 2, dim + 1) );
 		
 		// add empty label and numbers 1 to dim
 		this.Desk.add( new JLabel() );
@@ -46,7 +49,7 @@ public class GamePanel extends javax.swing.JPanel {
 		
 		setVisible(true);
 	}
-
+        
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always

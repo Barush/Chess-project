@@ -22,13 +22,15 @@ import javax.swing.JLabel;
 public abstract class Figure {
     protected Position pos;
     protected int col; // color
+    protected boolean active;
 	
 	public abstract boolean canMove(Position p);
-	public abstract String getPathToPic();
+	public abstract String getPathToPic(String state);
     
     public Figure(Position pos, int col){
         this.pos = pos;
         this.col = col;
+        this.active = false;
 //		pos.setFigure(this);
     }
     
@@ -50,12 +52,25 @@ public abstract class Figure {
     public int getColor(){
         return this.col;
     }
+    
+    public boolean isActive(){
+        if(this.active){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    
+    public void Activate(boolean state){
+        this.active = state;
+    }
 	
-	public void paintFigure() {
+	public void paintFigure(String state) {
 		Tile tile = this.pos.getTile();
 		BufferedImage image;
 		try {
-			image = ImageIO.read(getClass().getResource( this.getPathToPic() ));
+			image = ImageIO.read(getClass().getResource( this.getPathToPic(state) ));
 		} catch (IOException ex) {
 			Logger.getLogger(Figure.class.getName()).log(Level.SEVERE, null, ex);
 			return;

@@ -27,22 +27,22 @@ public class Pawn extends Figure{
             //white figures go from top to bottom
             if(this.getColor() == WHITE){
                 //normal moves
-                if(p.getRow() == (this.getPosition().getRow() - 1)){
+                if(p.getRow() == (this.getPosition().getRow() + 1)){
                     return true;
                 }
                 //starting moves - two positions
-                else if( (this.getPosition().getRow() == 2)  && (p.getRow() == (this.getPosition().getRow() - 2))){
+                else if( (this.getPosition().getRow() == 1)  && (p.getRow() == (this.getPosition().getRow() + 2))){
                     return true;
                 }
             }  
             //black figures go from bottom to top
             else if(this.getColor() == BLACK){
                 //normal move
-                if(p.getRow() == (this.getPosition().getRow() + 1)){
+                if(p.getRow() == (this.getPosition().getRow() - 1)){
                     return true;
                 }
                 //starting moves - two positions
-                else if((this.getPosition().getRow() == 7)  && (p.getRow() == (this.getPosition().getRow() + 2))){
+                else if((this.getPosition().getRow() == 6)  && (p.getRow() == (this.getPosition().getRow() - 2))){
                     return true;
                 }
             }
@@ -64,11 +64,20 @@ public class Pawn extends Figure{
     }
 
 	@Override
-	public String getPathToPic() {
-            if (this.col == BLACK){
-                return "/images/pawn_black_unp.png";
-            } else {
-                return "/images/pawn_white_unp.png";
+	public String getPathToPic(String state) {
+            if("active".equals(state)){
+                if (this.col == BLACK){
+                    return "/images/pawn_black_pre.png";
+                } else {
+                    return "/images/pawn_white_pre.png";
+                }    
+            }
+            else {
+                if (this.col == BLACK){
+                    return "/images/pawn_black_unp.png";
+                } else {
+                    return "/images/pawn_white_unp.png";
+                }            
             }
 	}
 }

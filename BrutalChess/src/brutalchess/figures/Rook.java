@@ -29,11 +29,20 @@ public class Rook extends Figure{
     }
 
 	@Override
-	public String getPathToPic() {
-            if (this.col == BLACK){
-                return "/images/rook_black_unp.png";
-            } else {
-                return "/images/rook_white_unp.png";
+	public String getPathToPic(String state) {
+            if("active".equals(state)){
+                if (this.col == BLACK){
+                    return "/images/rook_black_pre.png";
+                } else {
+                    return "/images/rook_white_pre.png";
+                }    
+            }
+            else {
+                if (this.col == BLACK){
+                    return "/images/rook_black_unp.png";
+                } else {
+                    return "/images/rook_white_unp.png";
+                }            
             }
 	}
 }

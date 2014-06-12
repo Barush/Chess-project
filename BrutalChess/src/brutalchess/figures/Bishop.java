@@ -30,11 +30,20 @@ public class Bishop extends Figure{
     }
 
 	@Override
-	public String getPathToPic() {
-            if (this.col == BLACK){
-                return "/images/bishop_black_unp.png";
-            } else {
-                return "/images/bishop_white_unp.png";
+	public String getPathToPic(String state) {
+            if("active".equals(state)){
+                if (this.col == BLACK){
+                    return "/images/bishop_black_pre.png";
+                } else {
+                    return "/images/bishop_white_pre.png";
+                }    
+            }
+            else {
+                if (this.col == BLACK){
+                    return "/images/bishop_black_unp.png";
+                } else {
+                    return "/images/bishop_white_unp.png";
+                }            
             }
 	}
 }

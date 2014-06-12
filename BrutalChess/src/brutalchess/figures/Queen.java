@@ -35,11 +35,20 @@ public class Queen extends Figure{
     }
 
 	@Override
-	public String getPathToPic() {
-            if (this.col == BLACK){
-                return "/images/queen_black_unp.png";
-            } else {
-                return "/images/queen_white_unp.png";
+	public String getPathToPic(String state) {
+            if("active".equals(state)){
+                if (this.col == BLACK){
+                    return "/images/queen_black_pre.png";
+                } else {
+                    return "/images/queen_white_pre.png";
+                }    
+            }
+            else {
+                if (this.col == BLACK){
+                    return "/images/queen_black_unp.png";
+                } else {
+                    return "/images/queen_white_unp.png";
+                }            
             }
 	}
 }
