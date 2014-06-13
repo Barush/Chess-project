@@ -44,7 +44,9 @@ public class Position {
     
     public void setFigure(Figure fig, String state) {
         this.fig = fig;
-		this.fig.paintFigure(state);
+        if(fig != null){
+            this.fig.paintFigure(state);
+        }
     }
     
     public Figure getFigure(){

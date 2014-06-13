@@ -69,6 +69,8 @@ public abstract class Figure {
 	public void paintFigure(String state) {
 		Tile tile = this.pos.getTile();
 		BufferedImage image;
+                
+                System.out.println("Painting figure to "+this.getPosition().getCol()+this.getPosition().getRow());
 		try {
 			image = ImageIO.read(getClass().getResource( this.getPathToPic(state) ));
 		} catch (IOException ex) {

@@ -1,7 +1,9 @@
 package brutalchess.ui;
 
 import static brutalchess.Const.*;
+import brutalchess.basis.Figure;
 import brutalchess.basis.Position;
+import brutalchess.figures.Pawn;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -37,7 +39,7 @@ public class Tile extends JPanel implements MouseListener{
                 if(p.getFigure().isActive()){
                     //figure inactivation
                     p.getFigure().Activate(false);
-                    this.setBackground(this.color == BLACK ? Color.LIGHT_GRAY : Color.WHITE);
+                    this.repaintColor();
                     this.p.setFigure(this.p.getFigure(), ".");
                     p.getDesk().setActive(null);
                 }
@@ -56,9 +58,16 @@ public class Tile extends JPanel implements MouseListener{
                 //figure moving
                 if(p.getDesk().getActive().getFigure().canMove(p)){
                     System.out.println("Can move");
-                    p.getDesk().getActive().getTile().setBackground(this.color == BLACK ? Color.LIGHT_GRAY : Color.WHITE);
-                    this.p.setFigure(p.getDesk().getActive().getFigure(), ".");
+                    //unmark the tile
+                    p.getDesk().getActive().getTile().repaintColor();
+                    //set position of figure
+                    p.getDesk().getActive().getFigure().setPosition(p);
+                    //set figure to position
+                    p.setFigure(p.getDesk().getActive().getFigure(), ".");
+                    //deactivate figure
                     p.getDesk().getActive().getFigure().Activate(false);
+                    //delete figure from previous position
+                    p.getDesk().getActive().setFigure(null, ".");
                     p.getDesk().setActive(null);
                 }            
             }
