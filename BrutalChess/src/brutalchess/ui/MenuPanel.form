@@ -20,9 +20,9 @@
               <EmptySpace min="-2" pref="239" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="2" attributes="0">
                   <Component id="butExit" alignment="2" max="32767" attributes="0"/>
-                  <Component id="butOnline" alignment="2" pref="257" max="32767" attributes="0"/>
-                  <Component id="butMulti" alignment="2" max="32767" attributes="0"/>
-                  <Component id="butSingle" alignment="2" max="32767" attributes="0"/>
+                  <Component id="butClient" alignment="2" pref="257" max="32767" attributes="0"/>
+                  <Component id="butHost" alignment="2" max="32767" attributes="0"/>
+                  <Component id="butLocal" alignment="2" max="32767" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="228" max="-2" attributes="0"/>
           </Group>
@@ -32,11 +32,11 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
-              <Component id="butSingle" pref="43" max="32767" attributes="0"/>
+              <Component id="butLocal" pref="43" max="32767" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="butMulti" pref="44" max="32767" attributes="0"/>
+              <Component id="butHost" pref="44" max="32767" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="butOnline" pref="45" max="32767" attributes="0"/>
+              <Component id="butClient" pref="45" max="32767" attributes="0"/>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="butExit" pref="46" max="32767" attributes="0"/>
               <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
@@ -45,12 +45,12 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="butSingle">
+    <Component class="javax.swing.JButton" name="butLocal">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Single player"/>
+        <Property name="text" type="java.lang.String" value="Local game"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[133, 31]"/>
         </Property>
@@ -62,7 +62,7 @@
         </Property>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butSingleActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butLocalActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="butExit">
@@ -76,26 +76,26 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butExitActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="butMulti">
+    <Component class="javax.swing.JButton" name="butHost">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Multiplayer"/>
+        <Property name="text" type="java.lang.String" value="Host game"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butMultiActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butHostActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="butOnline">
+    <Component class="javax.swing.JButton" name="butClient">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="18" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Online game"/>
+        <Property name="text" type="java.lang.String" value="Connect to host"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butOnlineActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="butClientActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

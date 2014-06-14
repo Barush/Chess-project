@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package brutalchess;
 
 import static brutalchess.Const.*;
@@ -9,7 +5,10 @@ import brutalchess.ui.Frame;
 import brutalchess.ui.MenuPanel;
 import brutalchess.ui.GamePanel;
 import brutalchess.basis.Desk;
+import brutalchess.basis.Game;
 import brutalchess.basis.Position;
+import brutalchess.online.Client;
+import brutalchess.online.Server;
 import javax.swing.JFrame;
 
 /**
@@ -23,7 +22,6 @@ public class BrutalChess {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         frame = new Frame();
         frame.setSize(800, 800);
         frame.setResizable(false);
@@ -32,9 +30,19 @@ public class BrutalChess {
 		frame.setContent( menu );
     }
 	
-	// we should probably move this thing to some place else
-	static public void initDesk(){
+	static public Game initDesk(){
 		Desk desk = new Desk(8);
 		frame.setContent( new GamePanel(desk.getPositions(), 8) );
+		
+		return new Game(desk);
+	}
+	
+	public static void initHost(String stringPort){
+		int port = Integer.parseInt(stringPort);
+		new Server(initDesk(), port);
+	}
+	
+	public static void initClient(String address){
+		new Client(initDesk(), address);
 	}
 }

@@ -121,6 +121,5 @@ public abstract class Figure {
             tile.add(this.picLabel);
         }
     }
-
         
 }

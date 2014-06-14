@@ -143,12 +143,5 @@ public class Desk {
 		createFigure(getPositionAt('h', 1), "Rook", WHITE);
 		createFigure(getPositionAt('a', 8), "Rook", BLACK);
 		createFigure(getPositionAt('h', 8), "Rook", BLACK);
-		
-//		for (int i = 0; i < dim; i++) {
-//            for (int j = 0; j < dim; j++) {
-//				int color = ((i + j) % 2) == 0 ? WHITE : BLACK;
-//                this.desk[i][j] = new Position(this, (char) ('a' + j), i + 1, color);
-//            }
-//        }
 	}
 }

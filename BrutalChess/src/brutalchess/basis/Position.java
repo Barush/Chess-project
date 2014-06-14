@@ -47,7 +47,9 @@ public class Position {
         if(fig != null){
             System.out.println("setting figure to "+col+row);
             this.fig.paintFigure(state);
-        }
+        } else {
+			this.tile.removeAll();
+		}
     }
     
     public Figure getFigure(){
