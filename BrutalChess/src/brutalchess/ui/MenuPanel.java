@@ -7,6 +7,9 @@
 package brutalchess.ui;
 
 import brutalchess.BrutalChess;
+import brutalchess.basis.Game;
+import brutalchess.online.Server;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Canes
@@ -30,19 +33,19 @@ public class MenuPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        butSingle = new javax.swing.JButton();
+        butLocal = new javax.swing.JButton();
         butExit = new javax.swing.JButton();
-        butMulti = new javax.swing.JButton();
-        butOnline = new javax.swing.JButton();
+        butHost = new javax.swing.JButton();
+        butClient = new javax.swing.JButton();
 
-        butSingle.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        butSingle.setText("Single player");
-        butSingle.setMaximumSize(new java.awt.Dimension(133, 31));
-        butSingle.setMinimumSize(new java.awt.Dimension(133, 31));
-        butSingle.setPreferredSize(new java.awt.Dimension(133, 31));
-        butSingle.addActionListener(new java.awt.event.ActionListener() {
+        butLocal.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        butLocal.setText("Local game");
+        butLocal.setMaximumSize(new java.awt.Dimension(133, 31));
+        butLocal.setMinimumSize(new java.awt.Dimension(133, 31));
+        butLocal.setPreferredSize(new java.awt.Dimension(133, 31));
+        butLocal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butSingleActionPerformed(evt);
+                butLocalActionPerformed(evt);
             }
         });
 
@@ -54,19 +57,19 @@ public class MenuPanel extends javax.swing.JPanel {
             }
         });
 
-        butMulti.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        butMulti.setText("Multiplayer");
-        butMulti.addActionListener(new java.awt.event.ActionListener() {
+        butHost.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        butHost.setText("Host game");
+        butHost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butMultiActionPerformed(evt);
+                butHostActionPerformed(evt);
             }
         });
 
-        butOnline.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        butOnline.setText("Online game");
-        butOnline.addActionListener(new java.awt.event.ActionListener() {
+        butClient.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        butClient.setText("Connect to host");
+        butClient.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                butOnlineActionPerformed(evt);
+                butClientActionPerformed(evt);
             }
         });
 
@@ -78,47 +81,57 @@ public class MenuPanel extends javax.swing.JPanel {
                 .addGap(239, 239, 239)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(butExit, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(butOnline, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                    .addComponent(butMulti, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(butSingle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(butClient, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                    .addComponent(butHost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(butLocal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(228, 228, 228))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(85, 85, 85)
-                .addComponent(butSingle, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                .addComponent(butLocal, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(butMulti, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
+                .addComponent(butHost, javax.swing.GroupLayout.DEFAULT_SIZE, 44, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(butOnline, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
+                .addComponent(butClient, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(butExit, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
                 .addGap(78, 78, 78))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void butSingleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butSingleActionPerformed
+    private void butLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butLocalActionPerformed
         BrutalChess.initDesk();
-    }//GEN-LAST:event_butSingleActionPerformed
+    }//GEN-LAST:event_butLocalActionPerformed
 
     private void butExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butExitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_butExitActionPerformed
 
-    private void butOnlineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butOnlineActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_butOnlineActionPerformed
+    private void butClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butClientActionPerformed
+		String response = JOptionPane.showInputDialog(evt.getSource(), "Write addresss and port of a host (127.0.0.1:1234)");
+//		String response = "127.0.0.1:42345";
+		if (response != null){
+			System.out.println("input: " + response);
+			BrutalChess.initClient(response);
+		}
+    }//GEN-LAST:event_butClientActionPerformed
 
-    private void butMultiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butMultiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_butMultiActionPerformed
+    private void butHostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butHostActionPerformed
+		String response = JOptionPane.showInputDialog(evt.getSource(), "What port should I listen to?");
+//		String response = "42345";
+		if (response != null){
+			System.out.println("port: " + response);
+			BrutalChess.initHost(response);
+		}
+    }//GEN-LAST:event_butHostActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton butClient;
     private javax.swing.JButton butExit;
-    private javax.swing.JButton butMulti;
-    private javax.swing.JButton butOnline;
-    private javax.swing.JButton butSingle;
+    private javax.swing.JButton butHost;
+    private javax.swing.JButton butLocal;
     // End of variables declaration//GEN-END:variables
 }
