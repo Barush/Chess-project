@@ -48,6 +48,8 @@ public class Position {
             this.fig.paintFigure(state);
         } else {
 			this.tile.removeAll();
+                        this.tile.revalidate();
+                        this.tile.repaint();
 		}
     }
     
@@ -61,5 +63,25 @@ public class Position {
     
     public Desk getDesk(){
         return this.desk;
+    }
+    
+    public void moveActiveFigure(){
+        Figure activeFig = this.getDesk().getActive().getFigure();
+        //figure moving
+        if(activeFig.canMove(this)){
+            System.out.println("Can move from "+activeFig.getPosition().getCol()+activeFig.getPosition().getRow()+" to "+this.getCol()+this.getRow());
+            //unmark the tile
+            activeFig.getPosition().getTile().removeAll();
+            this.getDesk().getActive().getTile().repaintColor();
+            //set position of figure
+            activeFig.setPosition(this);
+            //set figure to position
+            this.setFigure(activeFig, "inactive");
+            //deactivate figure
+            activeFig.Activate(false);
+            //delete figure from previous position
+            this.getDesk().getActive().setFigure(null, "");
+            this.getDesk().setActive(null);
+        }
     }
 }
