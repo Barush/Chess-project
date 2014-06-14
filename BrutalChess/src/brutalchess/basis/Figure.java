@@ -80,7 +80,9 @@ public abstract class Figure {
 		Image dimg = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
 		ImageIcon imgIcon = new ImageIcon( dimg );
 		JLabel picLabel = new JLabel( imgIcon );
+		tile.removeAll();
 		tile.add(picLabel);
+		tile.revalidate();
 	}
 
 }

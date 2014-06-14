@@ -46,7 +46,9 @@ public class Position {
         this.fig = fig;
         if(fig != null){
             this.fig.paintFigure(state);
-        }
+        } else {
+			this.tile.removeAll();
+		}
     }
     
     public Figure getFigure(){
