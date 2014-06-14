@@ -9,6 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -57,5 +58,5 @@ public class Tile extends JPanel implements MouseListener{
         @Override
         public void mouseExited(MouseEvent e) {
         }
-        
+
 }

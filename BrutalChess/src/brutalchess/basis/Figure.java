@@ -31,8 +31,7 @@ public abstract class Figure {
     public Figure(Position pos, int col){
         this.pos = pos;
         this.col = col;
-        this.active = false;
-//		pos.setFigure(this);
+        this.active = false;        
     }
     
     public void setPosition(Position pos){
@@ -101,5 +100,5 @@ public abstract class Figure {
             tile.revalidate();
             tile.repaint();
     }
-
+        
 }
