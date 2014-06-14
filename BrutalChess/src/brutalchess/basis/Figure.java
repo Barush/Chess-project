@@ -27,6 +27,7 @@ public abstract class Figure {
 	
 	public abstract boolean canMove(Position p);
 	public abstract String getPathToPic(String state);
+        public abstract boolean isFigureBetween(Position p);
     
     public Figure(Position pos, int col){
         this.pos = pos;
@@ -73,7 +74,7 @@ public abstract class Figure {
             this.active = false;
             this.pos.getDesk().setActive(null);
         }
-        else{
+        else if(this.pos.getDesk().getActive() == null){
             this.pos.setFigure(this, "active");
             this.active = true;
             //this.pos.getTile().setBackground(Color.GREEN);
@@ -85,7 +86,6 @@ public abstract class Figure {
             Tile tile = this.pos.getTile();
             BufferedImage image;
 
-            System.out.println("Painting figure to "+this.getPosition().getCol()+this.getPosition().getRow());
             try {
                     image = ImageIO.read(getClass().getResource( this.getPathToPic(state) ));
             } catch (IOException ex) {

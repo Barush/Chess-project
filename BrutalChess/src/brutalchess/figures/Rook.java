@@ -21,9 +21,54 @@ public class Rook extends Figure{
     }
 
     @Override
+    public boolean isFigureBetween(Position newPos){
+        if(this.pos.getCol() == newPos.getCol()){
+            //check rows
+            int from, to;
+            if(this.pos.getRow() < newPos.getRow()){
+                from = this.pos.getRow();
+                to = newPos.getRow();
+            }
+            else{
+                from = newPos.getRow();
+                to = this.pos.getRow();
+            }
+            for(int i = (from + 1); i < to; i++){
+                if(this.pos.getDesk().getFigureAt(this.pos.getCol(), i+1) != null){
+                    System.out.println("Position "+this.pos.getCol()+(i+1)+" is not clear.");
+                    return true;
+                }
+            }
+        }
+        else{
+            //check columns
+            char from, to;
+            if(this.pos.getCol() < newPos.getCol()){
+                from = this.pos.getCol();
+                to = newPos.getCol();
+            }
+            else{
+                from = newPos.getCol();
+                to = this.pos.getCol();
+            }
+            for(char i = (char) (from + 1); i < to; i++){
+                if(this.pos.getDesk().getFigureAt(i, this.pos.getRow() + 1) != null){
+                    System.out.println("Position "+i+(this.pos.getRow()+1)+" is not clear.");
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    @Override
     public boolean canMove(Position p) {
         if( (this.getPosition().getCol() == p.getCol()) || (this.getPosition().getRow() == p.getRow()) ){
-            return true;
+            if((p.getFigure() == null) || (p.getFigure().getColor() != this.getColor())){
+                if(!isFigureBetween(p)){
+                    return true;
+                }
+            }
         }
         return false;
     }

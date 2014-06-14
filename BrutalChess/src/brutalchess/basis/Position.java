@@ -45,7 +45,6 @@ public class Position {
     public void setFigure(Figure fig, String state) {
         this.fig = fig;
         if(fig != null){
-            System.out.println("setting figure to "+col+row);
             this.fig.paintFigure(state);
         } else {
 			this.tile.removeAll();
@@ -70,7 +69,7 @@ public class Position {
         Figure activeFig = this.getDesk().getActive().getFigure();
         //figure moving
         if(activeFig.canMove(this)){
-            System.out.println("Can move from "+activeFig.getPosition().getCol()+activeFig.getPosition().getRow()+" to "+this.getCol()+this.getRow());
+            //System.out.println("Can move from "+activeFig.getPosition().getCol()+activeFig.getPosition().getRow()+" to "+this.getCol()+this.getRow());
             //unmark the tile
             activeFig.getPosition().getTile().removeAll();
             this.getDesk().getActive().getTile().repaintColor();

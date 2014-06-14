@@ -22,10 +22,18 @@ public class Knight extends Figure{
     }
 
     @Override
+    public boolean isFigureBetween(Position p){
+        return false;
+    }
+    
+    
+    @Override
     public boolean canMove(Position p) {
         if( ((abs(p.getCol() - this.getPosition().getCol()) == 2) && (abs(p.getRow() - this.getPosition().getRow()) == 1)) ||
             ((abs(p.getCol() - this.getPosition().getCol()) == 1) && (abs(p.getRow() - this.getPosition().getRow()) == 2)) ){
-            return true;
+            if((p.getFigure() == null) || (p.getFigure().getColor() != this.getColor())){
+                return true;
+            }
         }
         return false;
     }

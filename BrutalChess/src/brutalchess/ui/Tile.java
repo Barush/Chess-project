@@ -35,7 +35,7 @@ public class Tile extends JPanel implements MouseListener{
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            if((p.getFigure() != null) && (p.getDesk().getActive() == null)){
+            if(((p.getDesk().getActive() == null) || (p.getDesk().getActive().getTile() == this)) && (p.getFigure() != null)){
                 p.getFigure().markFigure();
             }
             else if(p.getDesk().getActive() != null){

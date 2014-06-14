@@ -22,9 +22,16 @@ public class King extends Figure{
     }
 
     @Override
+    public boolean isFigureBetween(Position p){
+        return false;
+    }
+    
+    @Override
     public boolean canMove(Position p) {
        if((abs(this.getPosition().getCol() - p.getCol()) <= 1) && (abs(this.getPosition().getRow() - p.getRow()) <= 1)){
-           return true;
+            if((p.getFigure() == null) || (p.getFigure().getColor() != this.getColor())){
+                return true;
+            }
        }
        return false;
     }

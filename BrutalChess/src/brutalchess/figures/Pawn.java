@@ -21,6 +21,11 @@ public class Pawn extends Figure{
     }
 
     @Override
+    public boolean isFigureBetween(Position p){
+        return false;
+    }
+    
+    @Override
     public boolean canMove(Position p) {
         //normal moves (one or two forward)
         if(p.getCol() == this.getPosition().getCol()){
@@ -28,36 +33,48 @@ public class Pawn extends Figure{
             if(this.getColor() == WHITE){
                 //normal moves
                 if(p.getRow() == (this.getPosition().getRow() + 1)){
-                    return true;
+                    if(p.getFigure() == null){
+                        return true;
+                    }
                 }
                 //starting moves - two positions
                 else if( (this.getPosition().getRow() == 1)  && (p.getRow() == (this.getPosition().getRow() + 2))){
-                    return true;
+                    if(p.getFigure() == null){
+                        return true;
+                    }
                 }
             }  
             //black figures go from bottom to top
             else if(this.getColor() == BLACK){
                 //normal move
                 if(p.getRow() == (this.getPosition().getRow() - 1)){
-                    return true;
+                    if(p.getFigure() == null){
+                        return true;
+                    }
                 }
                 //starting moves - two positions
                 else if((this.getPosition().getRow() == 6)  && (p.getRow() == (this.getPosition().getRow() - 2))){
-                    return true;
+                    if(p.getFigure() == null){
+                        return true;
+                    }
                 }
             }
         }
         //throwing moves
-        else if((this.getColor() == WHITE) && (p.getRow() == (this.getPosition().getRow() - 1))){
-            if((p.getCol() == (this.getPosition().getCol() + 1)) && (p.getCol() == (this.getPosition().getCol() - 1))){
-                //throw figure()
-                return true;
+        else if((this.getColor() == WHITE) && (p.getRow() == (this.getPosition().getRow() + 1))){
+            if((p.getCol() == (this.getPosition().getCol() + 1)) || (p.getCol() == (this.getPosition().getCol() - 1))){
+                if((p.getFigure() != null) && (p.getFigure().getColor() != this.getColor())){
+                    //opponents figure is there
+                    return true;
+                }
             }
         }
-        else if((this.getColor() == BLACK) && (p.getRow() == (this.getPosition().getRow() + 1))){
-            if((p.getCol() == (this.getPosition().getCol() + 1)) && (p.getCol() == (this.getPosition().getCol() - 1))){
-                //throw figure()
-                return true;
+        else if((this.getColor() == BLACK) && (p.getRow() == (this.getPosition().getRow() - 1))){
+            if((p.getCol() == (this.getPosition().getCol() + 1)) || (p.getCol() == (this.getPosition().getCol() - 1))){
+                if((p.getFigure() != null) && (p.getFigure().getColor() != this.getColor())){
+                    //opponents figure is there
+                    return true;
+                }
             }
         }
         return false;

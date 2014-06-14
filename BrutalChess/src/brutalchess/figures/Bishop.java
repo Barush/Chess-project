@@ -22,9 +22,54 @@ public class Bishop extends Figure{
     }
 
     @Override
+    public boolean isFigureBetween(Position newPos){   
+        int lenght = Math.abs(this.pos.getCol() - newPos.getCol());
+        for(int i = 1; i < lenght; i++){
+            if(this.pos.getCol() < newPos.getCol()){
+                //-->
+                if(this.pos.getRow() < newPos.getRow()){
+                    //--> vv
+                    if(this.pos.getDesk().getFigureAt((char) (this.pos.getCol()+i), this.pos.getRow()+1+i) != null){
+                        System.out.println("Position "+(char)(this.pos.getCol()+i)+(this.pos.getRow()+1+i)+" is not clear.");
+                        return true;
+                    }
+                }else{
+                    //--> ^^
+                    if(this.pos.getDesk().getFigureAt((char) (this.pos.getCol()+i), this.pos.getRow()+1-i) != null){
+                        System.out.println("Position "+(char)(this.pos.getCol()+i)+(this.pos.getRow()+1-i)+" is not clear.");
+                        return true;
+                    }
+                }
+            }else{
+                //<--
+                if(this.pos.getRow() < newPos.getRow()){
+                    //--> vv
+                    if(this.pos.getDesk().getFigureAt((char) (this.pos.getCol()-i), this.pos.getRow()+1+i) != null){
+                        System.out.println("Position "+(char)(this.pos.getCol()-i)+(this.pos.getRow()+1+i)+" is not clear.");
+                        return true;
+                    }
+                }else{
+                    //--> ^^
+                    if(this.pos.getDesk().getFigureAt((char) (this.pos.getCol()-i), this.pos.getRow()+1-i) != null){
+                        System.out.println("Position "+(char)(this.pos.getCol()-i)+(this.pos.getRow()+1-i)+" is not clear.");
+                        return true;
+                    }
+                }           
+            }
+        }
+        return false;
+    }
+    
+    @Override
     public boolean canMove(Position p) {
         if(abs(this.getPosition().getCol() - p.getCol()) == abs(this.getPosition().getRow() - p.getRow())){
-            return true;
+            if(!this.isFigureBetween(p)){
+                if((p.getFigure() == null) || (p.getFigure().getColor() != this.getColor())){
+                    if(!this.isFigureBetween(p)){
+                        return true;
+                    }
+                }
+            }
         }
         return false;
     }
