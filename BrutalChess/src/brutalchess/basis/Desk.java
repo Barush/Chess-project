@@ -27,7 +27,7 @@ public class Desk {
         }
         this.active = null;
 		
-		this.initFigures();
+        this.initFigures();
     }
 
     /**
@@ -71,7 +71,7 @@ public class Desk {
         this.active = pos;
     }
     
-	private void createFigure(Position pos, String type, int color){
+	public void createFigure(Position pos, String type, int color){
             Figure tempF = null;
             
             switch(type){
@@ -89,7 +89,7 @@ public class Desk {
                             break;
             }
                        
-            pos.setFigure(tempF, ".");
+            pos.setFigure(tempF, "inactive");
             tempF.setPosition(pos);
             
         }

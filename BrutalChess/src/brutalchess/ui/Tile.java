@@ -9,6 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 /**
@@ -34,42 +35,13 @@ public class Tile extends JPanel implements MouseListener{
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            if(p.getFigure() != null){
-                //figure marking
-                if(p.getFigure().isActive()){
-                    //figure inactivation
-                    p.getFigure().Activate(false);
-                    this.repaintColor();
-                    this.p.setFigure(this.p.getFigure(), ".");
-                    p.getDesk().setActive(null);
-                }
-                else{
-                    //figure activation
-                    if(p.getDesk().getActive() == null){
-                        //if no other is active
-                        p.getFigure().Activate(true);
-                        this.p.setFigure(this.p.getFigure(), "active");
-                        this.setBackground(Color.GREEN);
-                        p.getDesk().setActive(p);
-                    }
-                }
+            if(this.p.getFigure() != null){
+                //tile with figure clicked
+                this.p.getFigure().markFigure();
             }
-            else if(p.getDesk().getActive() != null){
-                //figure moving
-                if(p.getDesk().getActive().getFigure().canMove(p)){
-                    System.out.println("Can move");
-                    //unmark the tile
-                    p.getDesk().getActive().getTile().repaintColor();
-                    //set position of figure
-                    p.getDesk().getActive().getFigure().setPosition(p);
-                    //set figure to position
-                    p.setFigure(p.getDesk().getActive().getFigure(), ".");
-                    //deactivate figure
-                    p.getDesk().getActive().getFigure().Activate(false);
-                    //delete figure from previous position
-                    p.getDesk().getActive().setFigure(null, ".");
-                    p.getDesk().setActive(null);
-                }            
+            else if(this.p.getDesk().getActive() != null){
+                //empty tile clicked and some figure is active
+                this.p.moveActiveFigure();           
             }
         }
 
@@ -88,5 +60,5 @@ public class Tile extends JPanel implements MouseListener{
         @Override
         public void mouseExited(MouseEvent e) {
         }
-        
+
 }
