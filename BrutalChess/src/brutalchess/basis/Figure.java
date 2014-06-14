@@ -110,16 +110,23 @@ public abstract class Figure {
         }
     }
     
-    public void paintFigure(String state) {       
-        Tile tile = this.pos.getTile();
-        System.out.println("painting");
-        
-        if(state == "active"){
-            tile.add(this.actLabel);
+	public void paintFigure(String state) {
+            Tile tile = this.pos.getTile();
+            BufferedImage image;
+
+                            System.out.println("Painting figure to "+this.getPosition().getCol()+this.getPosition().getRow());
+            try {
+            image = ImageIO.read(getClass().getResource( this.getPathToPic(state) ));
+            } catch (IOException ex) {
+            Logger.getLogger(Figure.class.getName()).log(Level.SEVERE, null, ex);
+            return;
+            }
+            Image dimg = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+            ImageIcon imgIcon = new ImageIcon( dimg );
+            JLabel picLabel = new JLabel( imgIcon );
+            tile.removeAll();
+            tile.add(picLabel);
+            tile.revalidate();
         }
-        else{
-            tile.add(this.picLabel);
-        }
-    }
         
 }
