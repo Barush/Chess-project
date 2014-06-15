@@ -24,7 +24,7 @@ public class Desk {
         for (int i = 0; i < dim; i++) {
             for (int j = 0; j < dim; j++) {
 				int color = ((i + j) % 2) == 0 ? BLACK : WHITE;
-                this.desk[i][j] = new Position(this, (char) ('a' + j), i, color);
+                this.desk[i][j] = new Position(this, (char) ('a' + j), i + 1, color);
             }
         }
         this.active = null;

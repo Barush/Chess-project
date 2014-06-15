@@ -67,12 +67,13 @@ public class Position {
     
     public void moveActiveFigure(){
         Figure activeFig = this.getDesk().getActive().getFigure();
+		Position from = this.getDesk().getActive();
         //figure moving
         if(activeFig.canMove(this)){
             //System.out.println("Can move from "+activeFig.getPosition().getCol()+activeFig.getPosition().getRow()+" to "+this.getCol()+this.getRow());
             //unmark the tile
             activeFig.getPosition().getTile().removeAll();
-            this.getDesk().getActive().getTile().repaintColor();
+            from.getTile().repaintColor();
             //set position of figure
             activeFig.setPosition(this);
             //set figure to position
@@ -82,7 +83,7 @@ public class Position {
             //delete figure from previous position
             this.getDesk().getActive().setFigure(null, "");
             this.getDesk().setActive(null);
-			desk.getGame().moveMade(this.getDesk().getActive(), this);
+			desk.getGame().moveMade(from, this);
         }
     }
 }
