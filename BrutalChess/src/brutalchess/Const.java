@@ -33,4 +33,9 @@ public class Const{
 	public static int WHITE = 1;
 	public static int NONE = 2;
 	public static int LOCALGAME = 3;
+	public static boolean DEBUG = true;
+	
+	public static void dbg(String msg){
+		if (DEBUG) System.out.println(msg);
+	}
 }

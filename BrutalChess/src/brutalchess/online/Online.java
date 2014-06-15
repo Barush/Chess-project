@@ -42,7 +42,7 @@ public abstract class Online {
 					new BufferedInputStream(socket.getInputStream())
 			);
 			
-			System.out.println("Listening...");
+			dbg("Listening...");
 
 			int character;
 			while((character = input.read()) != 13) {
@@ -53,13 +53,13 @@ public abstract class Online {
 		}
 
 		// check incoming message
-		System.out.println("Received message " + strb);
+		dbg("Received message " + strb);
 		
 		return strb.toString();
 	}
 
 	public boolean sendMsg(String message) {
-		System.out.println("Sending message " + message);
+		dbg("Sending message " + message);
 		try {
 			OutputStreamWriter osw = new OutputStreamWriter(
 				new BufferedOutputStream(socket.getOutputStream())	
@@ -73,10 +73,10 @@ public abstract class Online {
 //			socket.close();
 			
 		} catch (IOException e) {
-			System.out.println("Unexpected exception on server side" +e);
+			dbg("Unexpected exception on server side" +e);
 			return false;
 		}
-		System.out.println("Message sent: " + message);
+		dbg("Message sent: " + message);
 		return true;
 	}
 	
@@ -101,13 +101,13 @@ public abstract class Online {
 		int r = Integer.parseInt(move.substring(1, 2));
 		Position from = game.getDesk().getPositionAt(c, r);
 		
-		System.out.println("From: "+ c +" - "+ r);
+		dbg("From: "+ c +" - "+ r);
 		
 		c = move.charAt(2);
 		r = Integer.parseInt(move.substring(3, 4));
 		Position to = game.getDesk().getPositionAt(c, r);
 		
-		System.out.println("To: "+ c +" - "+ r);
+		dbg("To: "+ c +" - "+ r);
 		
 		game.makeMove(from, to);
 		return true;

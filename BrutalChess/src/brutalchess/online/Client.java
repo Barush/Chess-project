@@ -36,21 +36,21 @@ public class Client extends Online{
 				socket = new Socket(address, port);
 				sendMsg(CONNECTMESSAGE);
 				
-				System.out.println("Socket created! Sending message...");
+				dbg("Socket created! Sending message...");
 				
 			} catch (IOException ex) {
 				Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-				System.out.println("BULLSHIT!");
+				dbg("BULLSHIT!");
 			}
 			
 		} catch (UnknownHostException ex) {
 			Logger.getLogger(Client.class.getName()).log(Level.SEVERE, null, ex);
-			System.out.println("BULLSHIT!");
+			dbg("BULLSHIT!");
 		}
 		
 		// get Color from host
 		int color = Integer.parseInt( listenFor() );
-		System.out.println("Got color from server: "+ (char) color);
+		dbg("Got color from server: "+ (char) color);
 		if (color == BLACK || color == WHITE){
 			game.setLocalColor(color);
 		} else {

@@ -23,13 +23,13 @@ public class Server extends Online{
 	
 	@Override
 	public void init(){
-		System.out.println("Running server ");
+		dbg("Running server ");
 		
 		try {
 			serverSocket = new ServerSocket(port);
 			socket = serverSocket.accept();
 			
-			System.out.println("Catching " + CONNECTMESSAGE);
+			dbg("Catching " + CONNECTMESSAGE);
 			if (listenFor().equals(CONNECTMESSAGE)){
 				
 				// send color
