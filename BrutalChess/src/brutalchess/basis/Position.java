@@ -69,6 +69,7 @@ public class Position {
         Figure activeFig = this.getDesk().getActive().getFigure();
         //figure moving
         if(activeFig.canMove(this)){
+            activeFig.markCanMovePositions(false);
             //System.out.println("Can move from "+activeFig.getPosition().getCol()+activeFig.getPosition().getRow()+" to "+this.getCol()+this.getRow());
             //unmark the tile
             activeFig.getPosition().getTile().removeAll();

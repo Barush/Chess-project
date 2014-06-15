@@ -28,6 +28,7 @@ public abstract class Figure {
 	public abstract boolean canMove(Position p);
 	public abstract String getPathToPic(String state);
         public abstract boolean isFigureBetween(Position p);
+        public abstract void markCanMovePositions(boolean mark);
     
     public Figure(Position pos, int col){
         this.pos = pos;
@@ -73,12 +74,14 @@ public abstract class Figure {
             this.pos.setFigure(this, "inactive");
             this.active = false;
             this.pos.getDesk().setActive(null);
+            this.markCanMovePositions(false);
         }
         else if(this.pos.getDesk().getActive() == null){
+            //activate
             this.pos.setFigure(this, "active");
             this.active = true;
-            //this.pos.getTile().setBackground(Color.GREEN);
             this.pos.getDesk().setActive(this.pos);
+            this.markCanMovePositions(true);
         }
     }
 	

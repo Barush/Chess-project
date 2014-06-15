@@ -9,6 +9,8 @@ package brutalchess.figures;
 import brutalchess.basis.Figure;
 import brutalchess.basis.Position;
 import static brutalchess.Const.*;
+import javafx.scene.paint.Color;
+import javax.swing.*;
 
 /**
  *
@@ -27,50 +29,57 @@ public class Pawn extends Figure{
     
     @Override
     public boolean canMove(Position p) {
+        if(p == null){
+            return false;
+        }
         //normal moves (one or two forward)
-        if(p.getCol() == this.getPosition().getCol()){
+        if(p.getCol() == this.pos.getCol()){
             //white figures go from top to bottom
             if(this.getColor() == WHITE){
                 //normal moves
-                if(p.getRow() == (this.getPosition().getRow() + 1)){
+                if(p.getRow() == (this.pos.getRow() + 1)){
                     if(p.getFigure() == null){
                         return true;
                     }
                 }
                 //starting moves - two positions
-                else if( (this.getPosition().getRow() == 1)  && (p.getRow() == (this.getPosition().getRow() + 2))){
+                else if( (this.pos.getRow() == 1)  && (p.getRow() == (this.pos.getRow() + 2))){
                     if(p.getFigure() == null){
-                        return true;
+                        if(this.pos.getDesk().getFigureAt(this.pos.getCol(), this.pos.getRow()+1 +1) == null){
+                            return true;
+                        }
                     }
                 }
             }  
             //black figures go from bottom to top
             else if(this.getColor() == BLACK){
                 //normal move
-                if(p.getRow() == (this.getPosition().getRow() - 1)){
+                if(p.getRow() == (this.pos.getRow() - 1)){
                     if(p.getFigure() == null){
                         return true;
                     }
                 }
                 //starting moves - two positions
-                else if((this.getPosition().getRow() == 6)  && (p.getRow() == (this.getPosition().getRow() - 2))){
+                else if((this.pos.getRow() == 6)  && (p.getRow() == (this.pos.getRow() - 2))){
                     if(p.getFigure() == null){
-                        return true;
+                        if(this.pos.getDesk().getFigureAt(this.pos.getCol(), this.pos.getRow()+1 - 1) == null){
+                            return true;
+                        }
                     }
                 }
             }
         }
         //throwing moves
-        else if((this.getColor() == WHITE) && (p.getRow() == (this.getPosition().getRow() + 1))){
-            if((p.getCol() == (this.getPosition().getCol() + 1)) || (p.getCol() == (this.getPosition().getCol() - 1))){
+        else if((this.getColor() == WHITE) && (p.getRow() == (this.pos.getRow() + 1))){
+            if((p.getCol() == (this.pos.getCol() + 1)) || (p.getCol() == (this.pos.getCol() - 1))){
                 if((p.getFigure() != null) && (p.getFigure().getColor() != this.getColor())){
                     //opponents figure is there
                     return true;
                 }
             }
         }
-        else if((this.getColor() == BLACK) && (p.getRow() == (this.getPosition().getRow() - 1))){
-            if((p.getCol() == (this.getPosition().getCol() + 1)) || (p.getCol() == (this.getPosition().getCol() - 1))){
+        else if((this.getColor() == BLACK) && (p.getRow() == (this.pos.getRow() - 1))){
+            if((p.getCol() == (this.pos.getCol() + 1)) || (p.getCol() == (this.pos.getCol() - 1))){
                 if((p.getFigure() != null) && (p.getFigure().getColor() != this.getColor())){
                     //opponents figure is there
                     return true;
@@ -88,8 +97,13 @@ public class Pawn extends Figure{
                 } else {
                     return "/images/pawn_white_pre.png";
                 }    
-            }
-            else {
+            }else if("dead".equals(state)){
+                if(this.col == BLACK){
+                    return "/images/pawn_black_pre_unm.png";
+                }else{
+                    return "/images/pawn_white_pre_unm.png";
+                }
+            }else {
                 if (this.col == BLACK){
                     return "/images/pawn_black_unp.png";
                 } else {
@@ -97,4 +111,72 @@ public class Pawn extends Figure{
                 }            
             }
 	}
+
+    @Override
+    public void markCanMovePositions(boolean mark) {
+        boolean canMove = false;
+        if(mark){
+            //white move +1
+            if((this.col == WHITE) && (this.canMove(this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1 +1)))){
+                canMove = true;
+                this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1+1).getTile().setBackground(java.awt.Color.cyan);
+            }
+            //white move +2
+            if((this.col == WHITE) && (this.pos.getRow() == 1) && (this.canMove(this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1 +2)))){
+                canMove = true;
+                this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1+2).getTile().setBackground(java.awt.Color.cyan);
+            }
+            //black move -1
+            if((this.col == BLACK) && (this.canMove(this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1 - 1)))){
+                canMove = true;
+                this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1 - 1).getTile().setBackground(java.awt.Color.cyan);
+            }
+            //black move -2
+            if((this.col == BLACK) && (this.pos.getRow() == 6) && (this.canMove(this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1 - 2)))){
+                canMove = true;
+                this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1 - 2).getTile().setBackground(java.awt.Color.cyan);
+            }
+            //white throwing move
+            if((this.col == WHITE) && (this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1 + 1)))){
+                canMove = true;
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1 + 1).getTile().setBackground(java.awt.Color.cyan);
+            }
+            //white throwing move
+            if((this.col == WHITE) && (this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1 + 1)))){
+                canMove = true;
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1 + 1).getTile().setBackground(java.awt.Color.cyan);
+            }
+            //black throwing move
+            if((this.col == BLACK) && (this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1 - 1)))){
+                canMove = true;
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1 - 1).getTile().setBackground(java.awt.Color.cyan);
+            }
+            //black throwing move
+            if((this.col == BLACK) && (this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1 - 1)))){
+                canMove = true;
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1 - 1).getTile().setBackground(java.awt.Color.cyan);
+            }  
+            if(!canMove){
+                this.paintFigure("dead");
+            }
+        }
+        else{
+            if(this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1+1) != null) 
+                this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1+1).getTile().repaintColor();
+            if((this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1+2) != null) && (this.pos.getRow() == 1)) 
+                this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1+2).getTile().repaintColor();
+            if(this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1 - 1) != null) 
+                this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1 - 1).getTile().repaintColor();
+            if(( this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1 - 2) != null) && (this.pos.getRow() == 6)) 
+                this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1 - 2).getTile().repaintColor();
+            if(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1 + 1) != null) 
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1 + 1).getTile().repaintColor();
+            if(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1 + 1) != null) 
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1 + 1).getTile().repaintColor();
+            if(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1 - 1) != null) 
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1 - 1).getTile().repaintColor();
+            if(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1 - 1) != null) 
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1 - 1).getTile().repaintColor();
+        }
+    }
 }

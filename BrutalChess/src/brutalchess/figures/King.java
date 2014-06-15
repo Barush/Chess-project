@@ -28,7 +28,11 @@ public class King extends Figure{
     
     @Override
     public boolean canMove(Position p) {
-       if((abs(this.getPosition().getCol() - p.getCol()) <= 1) && (abs(this.getPosition().getRow() - p.getRow()) <= 1)){
+        if(p == null){
+            return false;
+        }
+        
+        if((abs(this.getPosition().getCol() - p.getCol()) <= 1) && (abs(this.getPosition().getRow() - p.getRow()) <= 1)){
             if((p.getFigure() == null) || (p.getFigure().getColor() != this.getColor())){
                 return true;
             }
@@ -44,8 +48,13 @@ public class King extends Figure{
                 } else {
                     return "/images/king_white_pre.png";
                 }    
-            }
-            else {
+            }else if("dead".equals(state)){
+                if (this.col == BLACK){
+                    return "/images/king_black_pre_unm.png";
+                } else {
+                    return "/images/king_white_pre_unm.png";
+                } 
+            }else {
                 if (this.col == BLACK){
                     return "/images/king_black_unp.png";
                 } else {
@@ -53,5 +62,72 @@ public class King extends Figure{
                 }            
             }
 	}
+
+    @Override
+    public void markCanMovePositions(boolean mark) {
+        boolean canMove = false;
+        if(mark){
+            //v
+            if(this.canMove(this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1 +1))){
+                canMove = true;
+                this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1+1).getTile().setBackground(java.awt.Color.cyan);
+            }
+            //^
+            if(this.canMove(this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1 -1))){
+                canMove = true;
+                this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1-1).getTile().setBackground(java.awt.Color.cyan);
+            }
+            //-->
+            if(this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1))){
+                canMove = true;
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1).getTile().setBackground(java.awt.Color.cyan);
+            }
+            //<--
+            if(this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1))){
+                canMove = true;
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1).getTile().setBackground(java.awt.Color.cyan);
+            }
+            //v-->
+            if(this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1 +1))){
+                canMove = true;
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1+1).getTile().setBackground(java.awt.Color.cyan);
+            }
+            //<--v
+            if(this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1 +1))){
+                canMove = true;
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1+1).getTile().setBackground(java.awt.Color.cyan);
+            }
+            //^-->
+            if(this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1 -1))){
+                canMove = true;
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1-1).getTile().setBackground(java.awt.Color.cyan);
+            }
+            //<--^
+            if(this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1 -1))){
+                canMove = true;
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1-1).getTile().setBackground(java.awt.Color.cyan);
+            }
+            if(!canMove){
+                this.paintFigure("dead");
+           }
+        }else{
+            if((this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1 +1)) != null)
+                this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1 +1).getTile().repaintColor();
+            if((this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1 -1)) != null)
+                this.pos.getDesk().getPositionAt(this.pos.getCol(), this.pos.getRow()+1 -1).getTile().repaintColor();
+            if(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1) != null)
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1).getTile().repaintColor();
+            if(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1) != null)
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1).getTile().repaintColor();
+            if(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1 +1) != null)
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1 +1).getTile().repaintColor();
+            if(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1 +1) != null)
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1 +1).getTile().repaintColor();
+            if(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1 -1) != null)
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + 1), this.pos.getRow()+1 -1).getTile().repaintColor();
+            if(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1 -1) != null)
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow()+1 -1).getTile().repaintColor();
+        }
+    }
 }
 
