@@ -27,7 +27,7 @@ public abstract class Online {
 		this.game = game;
 	}
 	
-	public void run() {
+	public void init() {
 		if (game.getLocalColor() == BLACK){
 			decodeMove(listenFor());
 		}
@@ -69,6 +69,8 @@ public abstract class Online {
 			message = message + (char) 13;
 			osw.write(message);
 			osw.flush();
+			
+//			socket.close();
 			
 		} catch (IOException e) {
 			System.out.println("Unexpected exception on server side" +e);

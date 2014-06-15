@@ -34,13 +34,14 @@ public class Game {
 	
 	public void moveMade(Position from, Position to) {
 		if (getActivePlayerColor() == localColor && online != null) {
-				System.out.println("sening move and listening for another");
-				online.sendMove(from, to);
-				online.decodeMove(online.listenFor());
+//			System.out.println("sening move and listening for another");
+			online.sendMove(from, to);
+			changePlayers();
+			online.decodeMove(online.listenFor());
 		} else {
-			System.out.println("Not sending move, it's from other PC");
+//			System.out.println("Not sending move, it's from other PC");
+			changePlayers();
 		}
-		changePlayers();
 	}
 
 	public void changePlayers() {

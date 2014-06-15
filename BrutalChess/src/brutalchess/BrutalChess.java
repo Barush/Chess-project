@@ -49,13 +49,13 @@ public class BrutalChess {
 		Game game = initGame(WHITE);
 		Online online = new Server(game, port);
 		game.setNetworkHandler(online);
-		online.run();
+		online.init();
 	}
 
 	public static void initClient(String address) {
 		Game game = initGame(NONE);
 		Online online = new Client(game, address);
 		game.setNetworkHandler(online);
-		online.run();
+		online.init();
 	}
 }

@@ -14,6 +14,7 @@ import java.util.logging.Logger;
 public class Server extends Online{
 
 	protected int port;
+	ServerSocket serverSocket;
 
 	public Server(Game game, int port){
 		super(game);
@@ -21,11 +22,10 @@ public class Server extends Online{
 	}
 	
 	@Override
-	public void run(){
+	public void init(){
 		System.out.println("Running server ");
-		ServerSocket serverSocket;
+		
 		try {
-			
 			serverSocket = new ServerSocket(port);
 			socket = serverSocket.accept();
 			
@@ -47,7 +47,7 @@ public class Server extends Online{
 			Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
-		super.run();
+		super.init();
 	}
 
 }

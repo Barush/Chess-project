@@ -27,7 +27,7 @@ public class Client extends Online{
 	}
 	
 	@Override
-	public void run(){
+	public void init(){
 		InetAddress address;
 		try {
 			address = InetAddress.getByName(host);
@@ -57,7 +57,7 @@ public class Client extends Online{
 			throw new RuntimeException("Host didnt respond which color I should be");
 		}
 		
-		super.run();
+		super.init();
 	}
  
 }
