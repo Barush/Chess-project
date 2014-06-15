@@ -102,7 +102,7 @@ public class MenuPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void butLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butLocalActionPerformed
-        BrutalChess.initDesk();
+        BrutalChess.initLocal();
     }//GEN-LAST:event_butLocalActionPerformed
 
     private void butExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butExitActionPerformed
@@ -110,8 +110,8 @@ public class MenuPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_butExitActionPerformed
 
     private void butClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butClientActionPerformed
-		String response = JOptionPane.showInputDialog(evt.getSource(), "Write addresss and port of a host (127.0.0.1:1234)");
-//		String response = "127.0.0.1:42345";
+//		String response = JOptionPane.showInputDialog(evt.getSource(), "Write addresss and port of a host (127.0.0.1:1234)");
+		String response = "127.0.0.1:42345";
 		if (response != null){
 			System.out.println("input: " + response);
 			BrutalChess.initClient(response);
@@ -119,8 +119,8 @@ public class MenuPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_butClientActionPerformed
 
     private void butHostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butHostActionPerformed
-		String response = JOptionPane.showInputDialog(evt.getSource(), "What port should I listen to?");
-//		String response = "42345";
+//		String response = JOptionPane.showInputDialog(evt.getSource(), "What port should I listen to?");
+		String response = "42345";
 		if (response != null){
 			System.out.println("port: " + response);
 			BrutalChess.initHost(response);

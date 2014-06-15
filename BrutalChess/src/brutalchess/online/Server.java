@@ -1,5 +1,6 @@
 package brutalchess.online;
 
+import static brutalchess.Const.*;
 import brutalchess.basis.Game;
 import java.net.*;
 import java.io.*;
@@ -16,14 +17,28 @@ public class Server extends Online{
 
 	public Server(Game game, int port){
 		super(game);
+		this.port = port;
+	}
+	
+	@Override
+	public void run(){
+		System.out.println("Running server ");
 		ServerSocket serverSocket;
 		try {
 			
 			serverSocket = new ServerSocket(port);
 			socket = serverSocket.accept();
 			
+			System.out.println("Catching " + CONNECTMESSAGE);
 			if (listenFor().equals(CONNECTMESSAGE)){
-				sendMsg(ACKMESSAGE);
+				
+				// send color
+				if (game.getLocalColor() == WHITE){
+					sendMsg(String.valueOf(BLACK));
+				} else {
+					sendMsg(String.valueOf(WHITE));
+				}
+				
 			} else {
 				throw new RuntimeException("Client is speaking language I don't understand!");
 			}
@@ -31,7 +46,8 @@ public class Server extends Online{
 		} catch (IOException ex) {
 			Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		
+
+		super.run();
 	}
 
 }

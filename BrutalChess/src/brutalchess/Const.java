@@ -31,4 +31,6 @@ package brutalchess;
 public class Const{
 	public static int BLACK = 0;
 	public static int WHITE = 1;
+	public static int NONE = 2;
+	public static int LOCALGAME = 3;
 }
