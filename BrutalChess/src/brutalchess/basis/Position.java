@@ -82,7 +82,7 @@ public class Position {
             //delete figure from previous position
             this.getDesk().getActive().setFigure(null, "");
             this.getDesk().setActive(null);
-			desk.getGame().moveMade(from, this);
+			desk.getGame().moveMade(this.getDesk().getActive(), this);
         }
     }
 }
