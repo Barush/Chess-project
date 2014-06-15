@@ -98,7 +98,6 @@ public abstract class Figure {
             tile.removeAll();
             tile.add(picLabel);
             tile.revalidate();
-            tile.repaint();
     }
         
 }

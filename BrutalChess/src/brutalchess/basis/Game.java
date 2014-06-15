@@ -33,12 +33,12 @@ public class Game {
 	} 
 	
 	public void moveMade(Position from, Position to) {
-		if (getActivePlayerColor() == localColor) {
-			if (online != null) {
-				online.sendMove(from, to);
+		if (getActivePlayerColor() == localColor && online != null) {
 				System.out.println("sening move and listening for another");
+				online.sendMove(from, to);
 				online.decodeMove(online.listenFor());
-			}
+		} else {
+			System.out.println("Not sending move, it's from other PC");
 		}
 		changePlayers();
 	}
@@ -56,6 +56,8 @@ public class Game {
 	}
 	
 	public void setLocalColor(int color){
+		
+		System.out.println("Setting color to: "+ (color == WHITE ? "white" : "BLACK"));
 		localColor = color;
 	}
 	
