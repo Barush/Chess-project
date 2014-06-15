@@ -33,6 +33,10 @@ public class Tile extends JPanel implements MouseListener{
 	final public void repaintColor(){
 		this.setBackground(this.color == BLACK ? Color.LIGHT_GRAY : Color.WHITE);
 	}
+        
+        public void markTile(){
+            this.setBackground(Color.decode(this.color == BLACK ? "#88b178" : "#c2e8b3"));
+        }
 
         @Override
         public void mouseClicked(MouseEvent e) {

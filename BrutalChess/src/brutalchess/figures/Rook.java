@@ -34,8 +34,8 @@ public class Rook extends Figure{
                 to = this.pos.getRow();
             }
             for(int i = (from + 1); i < to; i++){
-                if(this.pos.getDesk().getFigureAt(this.pos.getCol(), i+1) != null){
-                    System.out.println("Position "+this.pos.getCol()+(i+1)+" is not clear.");
+                if(this.pos.getDesk().getFigureAt(this.pos.getCol(), i) != null){
+                    System.out.println("Position "+this.pos.getCol()+i+" is not clear.");
                     return true;
                 }
             }
@@ -52,8 +52,8 @@ public class Rook extends Figure{
                 to = this.pos.getCol();
             }
             for(char i = (char) (from + 1); i < to; i++){
-                if(this.pos.getDesk().getFigureAt(i, this.pos.getRow() + 1) != null){
-                    System.out.println("Position "+i+(this.pos.getRow()+1)+" is not clear.");
+                if(this.pos.getDesk().getFigureAt(i, this.pos.getRow()) != null){
+                    System.out.println("Position "+i+(this.pos.getRow())+" is not clear.");
                     return true;
                 }
             }
@@ -103,37 +103,37 @@ public class Rook extends Figure{
         
         if(mark){
             //direction v
-            while(this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow()+1 + i) != null){
-                if(this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow()+1 + i))){
+            while(this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow() + i) != null){
+                if(this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow() + i))){
                     canMove = true;
-                    this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow()+1 + i).getTile().setBackground(java.awt.Color.cyan);
+                    this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow() + i).getTile().markTile();
                 }
                 i++;
             }
             //direction ^
             i = 1;
-            while(this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow()+1 - i) != null){
-                if(this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow()+1 - i))){
+            while(this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow() - i) != null){
+                if(this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow() - i))){
                     canMove = true;
-                    this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow()+1 - i).getTile().setBackground(java.awt.Color.cyan);
+                    this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow() - i).getTile().markTile();
                 }
                 i++;
             }
             //direction <--
             i = 1;
-            while(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - i), this.pos.getRow()+1) != null){
-                if(this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - i), this.pos.getRow()+1))){
+            while(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - i), this.pos.getRow()) != null){
+                if(this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - i), this.pos.getRow()))){
                     canMove = true;
-                    this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - i), this.pos.getRow()+1).getTile().setBackground(java.awt.Color.cyan);
+                    this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - i), this.pos.getRow()).getTile().markTile();
                 }
                 i++;
             }
             //direction -->
             i = 1;
-            while(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + i), this.pos.getRow()+1) != null){
-                if(this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + i), this.pos.getRow()+1))){
+            while(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + i), this.pos.getRow()) != null){
+                if(this.canMove(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + i), this.pos.getRow()))){
                     canMove = true;
-                    this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + i), this.pos.getRow()+1).getTile().setBackground(java.awt.Color.cyan);
+                    this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + i), this.pos.getRow()).getTile().markTile();
                 }
                 i++;
             }
@@ -143,26 +143,26 @@ public class Rook extends Figure{
             }
         }else{
             //direction v
-            while(this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow()+1 + i) != null){
-                this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow()+1 + i).getTile().repaintColor();
+            while(this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow() + i) != null){
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow() + i).getTile().repaintColor();
                 i++;
             }
             //direction ^
             i = 1;
-            while(this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow()+1 - i) != null){
-                this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow()+1 - i).getTile().repaintColor();
+            while(this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow() - i) != null){
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol()), this.pos.getRow() - i).getTile().repaintColor();
                 i++;
             }
             //direction <--
             i = 1;
-            while(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - i), this.pos.getRow()+1) != null){
-                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - i), this.pos.getRow()+1).getTile().repaintColor();
+            while(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - i), this.pos.getRow()) != null){
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - i), this.pos.getRow()).getTile().repaintColor();
                 i++;
             }
             //direction -->
             i = 1;
-            while(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + i), this.pos.getRow()+1) != null){
-                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + i), this.pos.getRow()+1).getTile().repaintColor();
+            while(this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + i), this.pos.getRow()) != null){
+                this.pos.getDesk().getPositionAt((char) (this.pos.getCol() + i), this.pos.getRow()).getTile().repaintColor();
                 i++;
             }        
         }
