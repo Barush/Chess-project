@@ -20,6 +20,7 @@ import javax.swing.*;
  */
 public class GamePanel extends javax.swing.JPanel{
 
+	private JPanel activePlayerPanel;
 	/**
 	 * Creates new form Game
 	 * @param desk
@@ -31,7 +32,8 @@ public class GamePanel extends javax.swing.JPanel{
 		this.Desk.setLayout( new GridLayout(dim + 2, dim + 1) );
 		
 		// add empty label and numbers 1 to dim
-		this.Desk.add( new JLabel() );
+		activePlayerPanel = new JPanel();
+		this.Desk.add( activePlayerPanel );
                 char j = 'a';
 		for (int i = 1; i <= dim; i++){
 			this.Desk.add( new JLabel( String.valueOf(j++), JLabel.CENTER ) );
@@ -46,8 +48,18 @@ public class GamePanel extends javax.swing.JPanel{
 				this.Desk.add(pos.getTile());
 			}
 		}
-		
+		setActivePlayer(WHITE);
 		setVisible(true);
+	}
+	
+	public void setActivePlayer(int color) {
+		activePlayerPanel.removeAll();
+		if (color == WHITE) {
+			activePlayerPanel.add( new JLabel("W") );
+		} else {
+			activePlayerPanel.add( new JLabel("B") );
+		}
+		activePlayerPanel.revalidate();
 	}
         
 	/**

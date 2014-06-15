@@ -9,20 +9,22 @@ public class Desk {
     private final int dim;
     private final Position[][] desk;
     private Position active;
+    private Game game;
 
     /**
      * Constructor of the desk class
      * 
      * @param dim dimension of the desk - it is a square dim x dim tiles
      */
-    public Desk(int dim) {
+    public Desk(int dim, Game game) {
+		this.game = game;
         this.dim = dim;
         this.desk = new Position[dim][dim];
 		
         for (int i = 0; i < dim; i++) {
             for (int j = 0; j < dim; j++) {
 				int color = ((i + j) % 2) == 0 ? BLACK : WHITE;
-                this.desk[i][j] = new Position(this, (char) ('a' + j), i, color);
+                this.desk[i][j] = new Position(this, (char) ('a' + j), i + 1, color);
             }
         }
         this.active = null;
@@ -66,6 +68,10 @@ public class Desk {
     public Position getActive(){
         return this.active;
     }
+        
+    public Game getGame(){
+        return this.game;
+	}
     
     public void setActive(Position pos){
         this.active = pos;
