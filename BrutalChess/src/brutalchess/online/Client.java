@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  *
  * @author Canes
  */
-public class Client extends Online{
+public class Client extends Online implements Runnable{
 
 	protected String host;
 	protected int port;
@@ -27,7 +27,7 @@ public class Client extends Online{
 	}
 	
 	@Override
-	public void init(){
+	public void run(){
 		InetAddress address;
 		try {
 			address = InetAddress.getByName(host);

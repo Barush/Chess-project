@@ -37,7 +37,7 @@ public class Game {
 			dbg("sening move and listening for another");
 			online.sendMove(from, to);
 			changePlayers();
-			online.decodeMove(online.listenFor());
+			online.getMove();
 		} else {
 			dbg("Not sending move, it's from other PC");
 			changePlayers();

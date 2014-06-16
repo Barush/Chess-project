@@ -112,5 +112,11 @@ public abstract class Online {
 		game.makeMove(from, to);
 		return true;
 	}
+	
+	public void getMove(){
+		Thread thread = new Thread(new Listener(game));
+		thread.start();
+
+	}
 
 }

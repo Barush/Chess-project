@@ -11,7 +11,7 @@ import java.util.logging.Logger;
  *
  * @author Canes
  */
-public class Server extends Online{
+public class Server extends Online implements Runnable{
 
 	protected int port;
 	ServerSocket serverSocket;
@@ -22,7 +22,7 @@ public class Server extends Online{
 	}
 	
 	@Override
-	public void init(){
+	public void run(){
 		dbg("Running server ");
 		
 		try {

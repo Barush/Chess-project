@@ -47,15 +47,19 @@ public class BrutalChess {
 	public static void initHost(String stringPort) {
 		int port = Integer.parseInt(stringPort);
 		Game game = initGame(WHITE);
-		Online online = new Server(game, port);
-		game.setNetworkHandler(online);
-		online.init();
+		Server server = new Server(game, port);
+		game.setNetworkHandler(server);
+//		online.init();
+		Thread thread = new Thread(server);
+		thread.start();
 	}
 
 	public static void initClient(String address) {
 		Game game = initGame(NONE);
-		Online online = new Client(game, address);
-		game.setNetworkHandler(online);
-		online.init();
+		Client client = new Client(game, address);
+		game.setNetworkHandler(client);
+//		online.init();
+		Thread thread = new Thread(client);
+		thread.start();
 	}
 }
