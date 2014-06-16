@@ -9,8 +9,6 @@ package brutalchess.figures;
 import brutalchess.basis.Figure;
 import brutalchess.basis.Position;
 import static brutalchess.Const.*;
-import javafx.scene.paint.Color;
-import javax.swing.*;
 
 /**
  *

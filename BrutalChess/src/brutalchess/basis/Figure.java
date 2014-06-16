@@ -4,6 +4,7 @@
  */
 package brutalchess.basis;
 
+import static brutalchess.Const.*;
 import brutalchess.ui.Tile;
 import java.awt.Color;
 import java.awt.Image;
@@ -69,6 +70,10 @@ public abstract class Figure {
     }
     
     public void markFigure(){
+		if (!this.pos.getDesk().getGame().canPlayWithColor(this.col)){
+			dbg("Can't play with this figure!");
+			return;
+		}
         if(this.active){
             //inactivate
             this.pos.setFigure(this, "inactive");

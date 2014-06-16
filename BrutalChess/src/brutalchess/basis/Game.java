@@ -29,19 +29,20 @@ public class Game {
 		desk.setActive(from);
 		to.moveActiveFigure();
 		
-		System.out.println("move is done...");
+		dbg("move is done...");
 	} 
 	
 	public void moveMade(Position from, Position to) {
 		if (getActivePlayerColor() == localColor && online != null) {
-//			System.out.println("sening move and listening for another");
+			dbg("sening move and listening for another");
 			online.sendMove(from, to);
 			changePlayers();
 			online.decodeMove(online.listenFor());
 		} else {
-//			System.out.println("Not sending move, it's from other PC");
+			dbg("Not sending move, it's from other PC");
 			changePlayers();
 		}
+		dbg("My thread is blocked!");
 	}
 
 	public void changePlayers() {
@@ -58,7 +59,7 @@ public class Game {
 	
 	public void setLocalColor(int color){
 		
-		System.out.println("Setting color to: "+ (color == WHITE ? "white" : "BLACK"));
+		dbg("Setting color to: "+ (color == WHITE ? "white" : "BLACK"));
 		localColor = color;
 	}
 	
