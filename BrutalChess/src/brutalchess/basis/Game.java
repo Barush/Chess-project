@@ -67,9 +67,12 @@ public class Game {
 			finalMessage = "Ouch! You lost... Another game?";
 		}
 		JOptionPane.showMessageDialog(panel, finalMessage);
+		if (online != null) {
+			online.cleanUp();
+		}
 		BrutalChess.initMenu();
 	}
-	
+
 	public void setLocalColor(int color){
 		dbg("Setting color to: "+ (color == WHITE ? "white" : "BLACK"));
 		localColor = color;

@@ -118,5 +118,13 @@ public abstract class Online {
 		thread.start();
 
 	}
+	
+	public void cleanUp(){
+		try {
+			socket.close();
+		} catch (IOException ex) {
+			Logger.getLogger(Online.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 
 }

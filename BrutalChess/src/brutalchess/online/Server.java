@@ -49,5 +49,16 @@ public class Server extends Online implements Runnable{
 
 		super.init();
 	}
+	
+	@Override
+	public void cleanUp() {
+		try {
+			serverSocket.close();
+		} catch (IOException ex) {
+			Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		
+		super.cleanUp();
+	}
 
 }
