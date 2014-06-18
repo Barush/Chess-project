@@ -14,12 +14,6 @@
             <file>file:/home/xskriv01/Dokumenty/Chess-project/BrutalChess/src/brutalchess/figures/King.java</file>
             <file>file:/home/xskriv01/Dokumenty/Chess-project/BrutalChess/src/brutalchess/figures/Queen.java</file>
         </group>
-        <group name="web">
-            <file>file:/C:/KECY/škola/OOP/Chess-project/BrutalChess/test/brutalchess/basis/DeskTest.java</file>
-            <file>file:/C:/KECY/škola/OOP/Chess-project/BrutalChess/src/brutalchess/basis/Desk.java</file>
-            <file>file:/C:/KECY/škola/OOP/Chess-project/BrutalChess/src/brutalchess/basis/Position.java</file>
-            <file>file:/C:/KECY/škola/OOP/Chess-project/BrutalChess/src/brutalchess/basis/Game.java</file>
-            <file>file:/C:/KECY/škola/OOP/Chess-project/BrutalChess/src/brutalchess/online/Online.java</file>
-        </group>
+        <group name="web"/>
     </open-files>
 </project-private>

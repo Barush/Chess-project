@@ -7,11 +7,18 @@
 package brutalchess.ui;
 
 import static brutalchess.Const.*;
+import brutalchess.basis.Figure;
 import brutalchess.basis.Position;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 /**
@@ -21,6 +28,8 @@ import javax.swing.*;
 public class GamePanel extends javax.swing.JPanel{
 
 	private JPanel activePlayerPanel;
+	private JLabel whiteP;
+	private JLabel blackP;
 	/**
 	 * Creates new form Game
 	 * @param desk
@@ -33,8 +42,10 @@ public class GamePanel extends javax.swing.JPanel{
 		
 		// add empty label and numbers 1 to dim
 		activePlayerPanel = new JPanel();
+		initPlayerPicture(WHITE);
+		initPlayerPicture(BLACK);
 		this.Desk.add( activePlayerPanel );
-                char j = 'a';
+				char j = 'a';
 		for (int i = 1; i <= dim; i++){
 			this.Desk.add( new JLabel( String.valueOf(j++), JLabel.CENTER ) );
 		}
@@ -53,15 +64,38 @@ public class GamePanel extends javax.swing.JPanel{
 	}
 	
 	public void setActivePlayer(int color) {
-		activePlayerPanel.removeAll();
 		if (color == WHITE) {
-			activePlayerPanel.add( new JLabel("W") );
+			whiteP.setVisible(true);
+			blackP.setVisible(false);
 		} else {
-			activePlayerPanel.add( new JLabel("B") );
+			whiteP.setVisible(false);
+			blackP.setVisible(true);
 		}
-		activePlayerPanel.revalidate();
 	}
-        
+	
+	private void initPlayerPicture(int color){
+		BufferedImage image;
+		String pathToPic = (color == WHITE) ? "/images/player_2.png" : "/images/player_1.png";
+
+		try {
+			image = ImageIO.read(getClass().getResource( pathToPic ));
+		} catch (IOException ex) {
+			Logger.getLogger(Figure.class.getName()).log(Level.SEVERE, null, ex);
+			return;
+		}
+		Image dimg = image.getScaledInstance(60, 60, Image.SCALE_SMOOTH);
+		ImageIcon imgIcon = new ImageIcon( dimg );
+		JLabel pic = new JLabel( imgIcon );
+		
+		if (color == WHITE){
+			whiteP = pic;
+		} else {
+			blackP = pic;
+		}
+		pic.setVisible(false);
+		activePlayerPanel.add(pic);
+	}
+		
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
