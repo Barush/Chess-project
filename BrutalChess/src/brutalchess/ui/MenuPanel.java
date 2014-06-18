@@ -115,7 +115,7 @@ public class MenuPanel extends javax.swing.JPanel {
 		if (DEBUG){
 			response = "127.0.0.1:42345";
 		} else {
-			response = JOptionPane.showInputDialog(evt.getSource(), "Write addresss and port of a host (127.0.0.1:1234)");
+			response = JOptionPane.showInputDialog(null, "Write addresss and port of a host (127.0.0.1:1234)");
 		}
 		
 		if (response != null){
@@ -126,14 +126,27 @@ public class MenuPanel extends javax.swing.JPanel {
 
     private void butHostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_butHostActionPerformed
 		String response;
+		int color;
 		if (DEBUG){
 			response = "42345";
+			color = BLACK;
 		} else {
-			response = JOptionPane.showInputDialog(evt.getSource(), "What port should I listen to?");
+			response = JOptionPane.showInputDialog(null, "What port should I listen to?");
+			String[] options = {"WHITE", "BLACK"};
+			color = JOptionPane.showOptionDialog(
+					null,
+					"What color do you want?",
+					null,
+					JOptionPane.DEFAULT_OPTION,
+					JOptionPane.PLAIN_MESSAGE,
+					null,
+					options,
+					null
+			) == 0 ? WHITE : BLACK;
 		}
 		if (response != null){
 			dbg("port: " + response);
-			BrutalChess.initHost(response);
+			BrutalChess.initHost(response, color);
 		}
     }//GEN-LAST:event_butHostActionPerformed
 

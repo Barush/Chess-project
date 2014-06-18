@@ -48,9 +48,9 @@ public class BrutalChess {
 		initGame(LOCALGAME);
 	}
 
-	public static void initHost(String stringPort) {
+	public static void initHost(String stringPort, int color) {
 		int port = Integer.parseInt(stringPort);
-		Game game = initGame(WHITE);
+		Game game = initGame(color);
 		Server server = new Server(game, port);
 		game.setNetworkHandler(server);
 //		online.init();
