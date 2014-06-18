@@ -1,8 +1,10 @@
 package brutalchess.basis;
 
+import brutalchess.BrutalChess;
 import static brutalchess.Const.*;
 import brutalchess.online.Online;
 import brutalchess.ui.GamePanel;
+import javax.swing.JOptionPane;
 
 public class Game {
 
@@ -57,8 +59,18 @@ public class Game {
 		}
 	}
 	
+	public void playerWon(int color) {
+		String finalMessage;
+		if (localColor == color || localColor == LOCALGAME) {
+			finalMessage = "Congratulations "+ (color == WHITE ? "WHITE" : "BLACK") +" player! \nYou have won!";
+		} else {
+			finalMessage = "Ouch! You lost... Another game?";
+		}
+		JOptionPane.showMessageDialog(panel, finalMessage);
+		BrutalChess.initMenu();
+	}
+	
 	public void setLocalColor(int color){
-		
 		dbg("Setting color to: "+ (color == WHITE ? "white" : "BLACK"));
 		localColor = color;
 	}

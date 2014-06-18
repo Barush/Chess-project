@@ -28,8 +28,8 @@ public abstract class Figure {
 	
 	public abstract boolean canMove(Position p);
 	public abstract String getPathToPic(String state);
-        public abstract boolean isFigureBetween(Position p);
-        public abstract void markCanMovePositions(boolean mark);
+	public abstract boolean isFigureBetween(Position p);
+	public abstract void markCanMovePositions(boolean mark);
     
     public Figure(Position pos, int col){
         this.pos = pos;
@@ -107,5 +107,7 @@ public abstract class Figure {
             tile.add(picLabel);
             tile.revalidate();
     }
+	
+	public void deathCallback() {}
         
 }

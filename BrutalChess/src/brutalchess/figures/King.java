@@ -129,5 +129,11 @@ public class King extends Figure{
                 this.pos.getDesk().getPositionAt((char) (this.pos.getCol() - 1), this.pos.getRow() - 1).getTile().repaintColor();
         }
     }
+	
+	@Override
+	public void deathCallback() {
+		super.deathCallback();
+		this.pos.getDesk().getGame().playerWon( (this.col == WHITE) ? BLACK : WHITE );
+	}
 }
 

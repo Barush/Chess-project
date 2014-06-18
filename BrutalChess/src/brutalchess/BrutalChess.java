@@ -28,6 +28,10 @@ public class BrutalChess {
 		frame.setSize(800, 800);
 		frame.setResizable(false);
 		frame.setTitle("Chess project (Baruska a Ondrasek)");
+		initMenu();
+	}
+	
+	public static void initMenu() {
 		MenuPanel menu = new MenuPanel();
 		frame.setContent(menu);
 	}
